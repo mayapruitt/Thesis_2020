@@ -8,8 +8,17 @@ const config = require('./config');
 const PORT = config.PORT;
 
 // ---- Connect to mongodb here ----
+// read in mongoose library
+const mongoose = require('mongoose');
+// read in the URI to our MongoDB Atlas 
+const MONGODB_URI = config.MONGODB_URI;
+// Use mongoose to connect to our MongoDB Atlas server
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+//mongoose.connect(MONGODB_URI, { useUnifiedTopology: true });
+
 
 // --- connect to your collection ---
+const database = require('./models/database');
 
 // Handle data in a nice way
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,11 +33,15 @@ app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname + "/views/index.html"))
 });
 
+
+
 // ---- ADD YOUR API ENDPOINTS HERE ----
 // GET: "api/v1/database"
 app.get("/api/v1/database", async(req, res) => {
     try {
-        res.json({})
+        const data = await database.find();
+        res.json(data);
+        console.log("displaying all data");
     } catch (error) {
         console.error(error);
         res.json(error);
@@ -38,7 +51,13 @@ app.get("/api/v1/database", async(req, res) => {
 // POST: "api/v1/database"
 app.post("/api/v1/database", async(req, res) => {
     try {
-        res.json({})
+        const newData = {
+            list: req.body.list
+        }
+        console.log(req.body)
+        console.log(newData);
+        const data = await database.create(newData);
+        res.json(data);
     } catch (error) {
         console.error(error);
         res.json(error);
@@ -48,7 +67,12 @@ app.post("/api/v1/database", async(req, res) => {
 // PUT: "api/v1/database:id"
 app.put("/api/v1/database/:id", async(req, res) => {
     try {
-        res.json({})
+        const updatedData = {
+            todo: req.body.todo,
+            status: req.body.status
+        }
+        const data = await database.findOneAndUpdate({ _id: req.params.id }, updatedData, { new: true });
+        res.json(data);
     } catch (error) {
         console.error(error);
         res.json(error);
@@ -56,12 +80,16 @@ app.put("/api/v1/database/:id", async(req, res) => {
 });
 
 // DELETE: "api/v1/database:id"
-app.delete("/api/v1/database/:id", async(req, res) => {
+app.delete('/api/v1/database/:id', async(req, res) => {
+
     try {
-        res.json({})
+        console.log(req.params.id);
+        const deletedDocument = await database.findByIdAndDelete(req.params.id);
+        res.json({ "message": "successfully removed item", "data": JSON.stringify(deletedDocument) });
+        console.log("delete request received");
     } catch (error) {
-        console.error(error);
-        res.json(error);
+        console.log(error);
+        res.json({ error: JSON.stringify(error) });
     }
 });
 
