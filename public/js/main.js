@@ -16,14 +16,14 @@ function DOMLoaded(event) {
     //Add event listeners to buttons
     document.getElementById("getParts").addEventListener("click", getParticipants);
     document.getElementById("makeNewPart").addEventListener("click", makeNewParticipant);
-    document.getElementById("changePartID").addEventListener("click", changeParticipantID);
+    //document.getElementById("changePartID").addEventListener("click", changeParticipantID);
     document.getElementById("deletePart").addEventListener("click", deleteParticipant);
 
     //Initialize textboxes
-    document.getElementById("changeFrom").value = "";
-    document.getElementById("changeTo").value = "";
+    // document.getElementById("changeFrom").value = "";
+    // document.getElementById("changeTo").value = "";
 
-    document.getElementById("deleteID").value = "";
+    // document.getElementById("deleteID").value = "";
 
 
 }
@@ -36,7 +36,7 @@ async function getParticipants(event) {
         let response = await fetch("/api/v1/database", { method: 'GET' });
         response = await response.json();
         console.log(response);
-        //displayJSON(response);
+        displayJSON(response);
     } catch (error) {
         console.error(error);
     }
@@ -67,89 +67,12 @@ async function makeNewParticipant(event) {
     }
 }
 
-//     let response = await fetch("/api/v1/database", { method: 'POST' });
-//     response = await response.json();
-//     displayJSON(response);
-
-// }
-
-
-// async createTodo() {
-//     try {
-//       const newData = {
-//         list: listInput.value,
-//       };
-//       const options = {
-//         method: 'POST',
-//         body: JSON.stringify(newData)
-//       };
-//       let response = await fetch("/api/v1/database", options);
-//       response = await data.json();
-//       displayJSON(response);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
-
-
-//Change a participant's ID
-async function changeParticipantID(event) {
-
-    //Get values from textboxes
-    //cF stands for changeFrom
-    //cT stands for changeTo
-    let cF = document.getElementById("changeFrom").value;
-    let cT = document.getElementById("changeTo").value;
-
-    //If the numbers are invalid or if the textboxes are empty
-    //Display an error
-    //isNaN is a built in javascript function for "is not a number"
-    //Number() to convert string to integer
-    if (isNaN(Number(cF)) || isNaN(Number(cT)) || cF == "" || cT == "") {
-
-        clearElements();
-        let $p = document.createElement("p");
-
-        $p.innerHTML = "INVALID PUT INPUT!";
-        display.appendChild($p);
-        return;
-
-    }
-
-    let response = await fetch(`api/${cF}/${cT}`, { method: 'PUT' });
-    response = await response.json();
-
-    //Clear textboxes
-    document.getElementById("changeFrom").value = "";
-    document.getElementById("changeTo").value = "";
-
-    displayJSON(response);
-
-}
 
 //Delete a participant
 async function deleteParticipant(event) {
-
-    // let id = document.getElementById("deleteID").value;
-    // //If the numbers is invalid or if the textbox is empty
-    // if (isNaN(Number(id)) || id == "") {
-
-    //     clearElements();
-    //     let $p = document.createElement("p");
-
-    //     $p.innerHTML = "INVALID DELETE INPUT!";
-    //     display.appendChild($p);
-    //     return;
-    // }
-
     let response = await fetch(`/api/v1/database/${sessionID}`, { method: 'DELETE' });
     response = await response.json();
     console.log(response.data);
-
-    //clear delete input box
-    //document.getElementById("deleteID").value = "";
-    //displays json with ID removed
-    //displayJSON(response);
 }
 
 
@@ -181,6 +104,6 @@ function clearElements() {
 function showElements(item) {
 
     let $p = document.createElement("p");
-    $p.innerHTML = JSON.stringify(item);
+    $p.innerHTML = JSON.stringify(item.list);
     display.appendChild($p);
 }
