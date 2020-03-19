@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const app = express();
 const config = require('./config');
 
+var analysis = require('./compare_functions/requires.js');
+
+
 const PORT = config.PORT;
 
 // ---- Connect to mongodb here ----
@@ -42,6 +45,7 @@ app.get("/api/v1/database", async(req, res) => {
         const data = await database.find();
         res.json(data);
         console.log("displaying all data");
+        analysis.compare.simulateUsers(analysis.listData.lists);
     } catch (error) {
         console.error(error);
         res.json(error);
@@ -54,8 +58,7 @@ app.post("/api/v1/database", async(req, res) => {
         const newData = {
             list: req.body.list
         }
-        console.log(req.body)
-        console.log(newData);
+        matching.pipeline(req.body.list);
         const data = await database.create(newData);
         res.json(data);
     } catch (error) {
