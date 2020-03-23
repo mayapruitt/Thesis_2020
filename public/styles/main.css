@@ -5,8 +5,7 @@
     }
     /*.debug {
         border: 1px solid red;
-    }
-    */
+    }*/
     
     html {
         font-size: 16px
@@ -188,6 +187,7 @@
         font-weight: normal;
         font-size: 2.5rem;
         color: #CBBBAC;
+        padding: 1rem 0rem;
     }
     
     .object {
@@ -195,7 +195,7 @@
         font-size: 3.5rem;
         font-weight: bolder;
         text-align: center;
-        padding: 1rem;
+        padding: .45rem;
         color: #DD8092;
     }
     
@@ -204,6 +204,7 @@
         font-weight: normal;
         font-size: 1.5rem;
         margin-left: 2rem;
+        margin-top: 0rem;
         padding: 2rem;
         width: 65%;
         height: 30vh;
@@ -255,3 +256,193 @@
         opacity: 1;
         right: 0;
     }
+    /* PHASE TWO: EVALUATE*/
+    
+    #evalPage {
+        background-image: url("/assets/eval_bkg.png");
+    }
+    
+    .phaseHeader__eval {
+        font-family: Notable;
+        font-size: 3rem;
+        text-align: left;
+        padding-left: 2rem;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-fill-color: #0F0E13;
+        -webkit-text-stroke-color: #CBBBAC;
+    }
+    
+    .choiceButton {
+        display: flex;
+        justify-content: space-around;
+        padding: 2rem;
+    }
+    
+    .choiceButton__A {
+        font-family: Notable;
+        font-size: 2rem;
+        color: #DD8092;
+        background-color: #0F0E13;
+        border: 4px solid #DD8092;
+        box-sizing: border-box;
+        padding: 1rem 1.5rem;
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+    
+    .choiceButton__A span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    
+    .choiceButton__A span:after {
+        content: '\226B';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    
+    .choiceButton__A:hover span {
+        padding-right: 25px;
+    }
+    
+    .choiceButton__A:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+    
+    .choiceButton__B {
+        font-family: Notable;
+        font-size: 2rem;
+        color: #45B1B1;
+        background-color: #0F0E13;
+        border: 4px solid #45B1B1;
+        box-sizing: border-box;
+        padding: 1rem 1.5rem;
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+    
+    .choiceButton__B span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    
+    .choiceButton__B span:after {
+        content: '\226B';
+        /* >> entity
+    /*content: '\25B9'; small right pointing triangle*/
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    
+    .choiceButton__B:hover span {
+        padding-right: 25px;
+    }
+    
+    .choiceButton__B:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+    
+    .listDisplay {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+    }
+    
+    .listDisplay__A {
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 2rem;
+        color: #DD8092;
+        text-align: left;
+    }
+    
+    .listDisplay__B {
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 2rem;
+        color: #45B1B1;
+        text-align: left;
+    }
+    /* PHASE THREE: REFLECT - SAME */
+    
+    #reflectPage-same {
+        background-image: url("/assets/likemind_bkg.png");
+    }
+    
+    #reflectPage-diff {
+        background-image: url("/assets/diffmind_bkg.png");
+    }
+    
+    .phaseHeader__ref {
+        font-family: Notable;
+        font-size: 3rem;
+        text-align: left;
+        padding-left: 2rem;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-fill-color: #0F0E13;
+        -webkit-text-stroke-color: #45B1B1;
+    }
+    
+    .analysisContainer {
+        background: rgba(15, 14, 19, 0.9);
+        margin: 4vh;
+        padding: 2rem;
+        width: 70vw;
+    }
+    
+    .againButton {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 0rem 4rem;
+    }
+    
+    .againButton__click {
+        font-family: Montserrat;
+        font-size: 2rem;
+        color: #45B1B1;
+        background-color: #0F0E13;
+        border: 4px solid #45B1B1;
+        box-sizing: border-box;
+        padding: 1rem 1.5rem;
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+    
+    .againButton__click span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    
+    .againButton__click span:after {
+        content: '\226B';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    
+    .againButton__click:hover span {
+        padding-right: 25px;
+    }
+    
+    .againButton__click:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+    /* PHASE THREE: REFLECT - DIFF */

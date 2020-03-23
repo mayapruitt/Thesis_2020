@@ -31,7 +31,7 @@ const publicURL = path.resolve(`${__dirname}/public`);
 // Set your static server
 app.use(express.static(publicURL));
 
-// Set your static html file
+// static html pages
 app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname + "/views/index.html"))
 });
@@ -44,6 +44,21 @@ app.get("/03_create", (req, res) => {
     res.sendFile(path.resolve(__dirname + "/views/03_create.html"))
 })
 
+app.get("/04_evaluate", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "/views/04_evaluate.html"))
+})
+
+app.get("/05_reflectSame", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "/views/05_reflectSame.html"))
+})
+
+app.get("/05_reflectDiff", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "/views/05_reflectDiff.html"))
+})
+
+app.get("/index", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "/views/index.html"))
+})
 
 
 
