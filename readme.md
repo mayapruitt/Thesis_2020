@@ -6,7 +6,7 @@ The concept is to create an interactive experiment about creativity that becomes
 
 # SETUP
 
-You can visit this site at any time [here](https://pruitt-as5-databases.glitch.me) on glitch.
+You can visit this site at any time [here](https://180v1.glitch.me) on glitch.
 
 If you want to run the project locally, follow the steps below:
 
@@ -36,7 +36,7 @@ The most exciting part was creating my own algorithm to parse user input. I want
 
 With the help of my partner Craig Einstein, the words are instead converted into numbers that the computer can more easily cross check. By looking for matching strings between phrases and can essentially decide similarity in this way. 
 
-![vectorMatrix]
+![vectorMatrix](https://github.com/mayapruitt/Thesis_2020/blob/master/readme_photos/matrix%20of%20vectors%20.JPG)
 
 After running this algorithm the user will be presented two lists: one that is similar to the one they just generated, and one that is very different. 
 
@@ -48,13 +48,13 @@ The design process started with a general moodboard on Pinterest. I wanted the s
 
 This felt like a fun ode to the precedents of creativity research which started in the 1950s, but hopefully in this new form of a dynamic web application we have modernized it!
 
-![moodboard]
+![moodboard](https://github.com/mayapruitt/Thesis_2020/blob/master/readme_photos/thesis_moodboard.png)
 
-![wireframe]
+![wireframe](https://github.com/mayapruitt/Thesis_2020/blob/master/readme_photos/thesis_wireframe.png)
 
-![fontPairings]
+![fontPairings](https://github.com/mayapruitt/Thesis_2020/blob/master/readme_photos/fontPairings.png)
 
-![designs]
+![designs](https://github.com/mayapruitt/Thesis_2020/blob/master/readme_photos/thesis_designv1.png)
 
 # NEXT STEPS
 
