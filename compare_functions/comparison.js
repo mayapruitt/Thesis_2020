@@ -6,16 +6,16 @@ function simUsers(lists) {
     for (let i = 0; i < lists.length; i++) {
         var [sim, diff] = pipeL(lists[i]);
 
-        console.log("ANALYSIS FOR LIST " + i + ":")
-        console.log("LIST TEXT: ")
-        console.log(lists[i]);
-        console.log("\n***\n");
-        console.log("MOST SIMILAR WAS LIST " + sim + ":")
-        console.log(lists[sim]);
-        console.log("\n-------\n");
-        console.log("MOST DIFFERENT WAS LIST " + diff + ":")
-        console.log(lists[diff]);
-        console.log("\n\n\n\n")
+        // console.log("ANALYSIS FOR LIST " + i + ":")
+        // console.log("LIST TEXT: ")
+        // console.log(lists[i]);
+        // console.log("\n***\n");
+        // console.log("MOST SIMILAR WAS LIST " + sim + ":")
+        // console.log(lists[sim]);
+        // console.log("\n-------\n");
+        // console.log("MOST DIFFERENT WAS LIST " + diff + ":")
+        // console.log(lists[diff]);
+        // console.log("\n\n\n\n")
 
     }
 };
@@ -36,16 +36,16 @@ function pipeL(li) {
 
     /* CONVERT LIST INTO VECTOR */
     //an array of numbers representing dictionary index
-    var li = matching.listProcessing.wordsToDictIndex(strArr);
+    var dicWords = matching.listProcessing.wordsToDictIndex(strArr);
     //vector array of zeros (length of dictionary) 
     var vec = matching.vectors.initVector(matching.dict.length);
     //vector of zeros and ones, ones at the indices of dictionary words
-    matching.vectors.populateVector(li, vec);
+    matching.vectors.populateVector(dicWords, vec);
 
     /* COMPARE LIST TO OTHERS */
 
     var choices = matching.vectors.matchVectors(vec);
-
+    //console.log(choices);
     //most similar list is choices[0]
     //most diff list is choices[1]
 

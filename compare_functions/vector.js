@@ -65,6 +65,7 @@ function matchVecs(vec) {
     for (let i = 0; i < matching.matrix.length; ++i) {
         //compare vector to every vector in the matrix array
         num = matching.linearMath.compareVecs(vec, matching.matrix[i]);
+        // console.log(num);
         //If degree is smaller than any we've seen so far
         //This list is the most similar so far
         if (num < min) {
@@ -78,8 +79,18 @@ function matchVecs(vec) {
             ret[1] = i;
         }
     }
+    if (min == 90) {
+        do {
+            ret[0] = ((Math.random() * 100) % (matching.listData.lists.length - 1)) | 0;
+        } while (ret[0] == ret[1] && matching.matrix.length > 3);
+    }
+    if (max == 0) {
+        do {
+            ret[1] = ((Math.random() * 100) % (matching.listData.lists.length - 1)) | 0;
+        } while (ret[1] == ret[0] && matching.matrix.length > 3);
+    }
 
     //Return the matrix indicies of the most similar and most different vectors
-    return ret;
+    return [matching.listData.lists[ret[0]], matching.listData.lists[ret[1]]];
 }
 exports.matchVectors = matchVecs;

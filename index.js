@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const config = require('./config');
+var loaded = 0;
 
 var analysis = require('./compare_functions/requires.js');
 
@@ -41,6 +42,10 @@ app.get("/02_intro", (req, res) => {
 })
 
 app.get("/03_create", (req, res) => {
+    if (!loaded) {
+        analysis.compare.simulateUsers(analysis.listData.lists)
+        loaded = 1;
+    }
     res.sendFile(path.resolve(__dirname + "/views/03_create.html"))
 })
 
@@ -83,9 +88,15 @@ app.post("/api/v1/database", async(req, res) => {
         const newData = {
             list: req.body.list
         }
-        console.log(analysis.compare.pipeline(req.body.list));
-        const data = await database.create(newData);
-        res.json(data);
+        let ret = analysis.compare.pipeline(newData.list);
+
+        // const data = await database.create(newData);
+        res.json({
+            sim: JSON.stringify(ret[0]),
+            diff: JSON.stringify(ret[1])
+        });
+        analysis.listData.lists.push(newData.list);
+        analysis.listData.uData = ret;
     } catch (error) {
         console.error(error);
         res.json(error);
@@ -107,6 +118,16 @@ app.put("/api/v1/database/:id", async(req, res) => {
     }
 });
 
+app.get('/api/v1/database/uLists', (req, res) => {
+
+    let lData = {
+        sim: analysis.listData.uData[0],
+        diff: analysis.listData.uData[1]
+    };
+
+    res.json(lData);
+
+});
 // DELETE: "api/v1/database:id"
 app.delete('/api/v1/database/:id', async(req, res) => {
 
