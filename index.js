@@ -36,13 +36,15 @@ app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname + "/views/index.html"))
 });
 
-app.get("/intro", (req, res) => {
-    res.sendFile(path.resolve(__dirname + "/views/intro.html"))
+app.get("/02_intro", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "/views/02_intro.html"))
 })
 
-app.get("/create", (req, res) => {
-    res.sendFile(path.resolve(__dirname + "/views/create.html"))
+app.get("/03_create", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "/views/03_create.html"))
 })
+
+
 
 
 // ---- ADD YOUR API ENDPOINTS HERE ----

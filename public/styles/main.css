@@ -3,6 +3,10 @@
         padding: 0;
         box-sizing: border-box
     }
+    /*.debug {
+        border: 1px solid red;
+    }
+    */
     
     html {
         font-size: 16px
@@ -12,99 +16,242 @@
         font-family: Montserrat;
     }
     
-    #indexPage {
-        background-image: url("/assets/landing_bkg.png");
-    }
-    
     a,
     a:link,
     a:visited {
         color: black;
         text-decoration: none
     }
+    /* LANDING PAGE */
+    
+    #indexPage {
+        background-image: url("/assets/landing_bkg.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     
     .title {
         font-family: Notable;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 150px;
-        line-height: 195px;
+        font-size: 8.25rem;
         text-align: center;
+        padding-top: 33vh;
+        padding-bottom: 1rem;
         color: #45B1B1;
         text-shadow: 5px 5px 0px #DD8092;
     }
     
     .subtitle {
         font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 72px;
-        line-height: 88px;
-        /* identical to box height */
+        font-size: 4rem;
+        padding-top: 1rem;
         text-align: center;
         color: #CBBBAC;
     }
     
-    #startButton {
+    .start {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #start__button {
         font-family: Montserrat;
+        font-size: 2rem;
+        text-align: center;
         color: #45B1B1;
         background-color: #0F0E13;
         border: 4px solid #45B1B1;
+        position: absolute;
         box-sizing: border-box;
-        padding: 1rem;
+        margin-top: 14vh;
+        padding: 1rem 4rem;
+        display: inline-block;
+        transition-duration: 0.3s;
     }
     
-    #introHeading {
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 55px;
-        line-height: 67px;
-        color: #CBBBAC;
+    #start__button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
     }
     
-    #phases {
-        font-family: Montserrat;
-        list-style-type: circle;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 50px;
-        color: #CBBBAC;
+    #start__button span:after {
+        content: '\226B';
+        /* >> entity
+    /*content: '\25B9'; small right pointing triangle*/
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
     }
     
-    .submitButton {
-        font-family: Montserrat;
-        color: #45B1B1;
-        background-color: #0F0E13;
-        border: 4px solid #45B1B1;
-        box-sizing: border-box;
-        padding: 1rem;
+    #start__button:hover span {
+        padding-right: 25px;
     }
     
-    .phaseHeader {
-        font-family: Notable;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 3rem;
-        text-align: left;
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-fill-color: #0F0E13;
-        -webkit-text-stroke-color: #DD8092;
+    #start__button:hover span:after {
+        opacity: 1;
+        right: 0;
     }
-    
-    .instructions {
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 50px;
-        line-height: 61px;
-        color: #CBBBAC;
-    }
+    /* INTRO PAGE */
     
     #introPage {
         background-image: url("/assets/intro_bkg.png");
     }
     
+    #introHeading {
+        font-family: Montserrat;
+        margin-top: 55vh;
+        padding: 1rem 2rem;
+        font-size: 3rem;
+        color: #CBBBAC;
+    }
+    
+    .phasesList {
+        font-family: Montserrat;
+        padding: 1rem 4rem;
+        font-size: 2.5rem;
+        color: #CBBBAC;
+    }
+    
+    .submitButton {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 0rem 2rem;
+    }
+    
+    .submitButton__ready {
+        font-family: Montserrat;
+        font-size: 2rem;
+        color: #45B1B1;
+        background-color: #0F0E13;
+        border: 4px solid #45B1B1;
+        box-sizing: border-box;
+        padding: 1rem 1.5rem;
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+    
+    .submitButton__ready span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    
+    .submitButton__ready span:after {
+        content: '\226B';
+        /* >> entity
+    /*content: '\25B9'; small right pointing triangle*/
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    
+    .submitButton__ready:hover span {
+        padding-right: 25px;
+    }
+    
+    .submitButton__ready:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+    /* PHASE ONE: CREATE */
+    
     #createPage {
         background-image: url("/assets/create_bkg.png");
+    }
+    
+    .phaseHeader {
+        font-family: Notable;
+        font-size: 3rem;
+        text-align: left;
+        padding-left: 2rem;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-fill-color: #0F0E13;
+        -webkit-text-stroke-color: #DD8092;
+    }
+    
+    .instructionsContainer {
+        background: rgba(15, 14, 19, 0.9);
+        margin: 4vh;
+        padding: 2rem;
+    }
+    
+    .instructions {
+        font-family: Montserrat;
+        font-weight: normal;
+        font-size: 2.5rem;
+        color: #CBBBAC;
+    }
+    
+    .object {
+        font-family: Notable;
+        font-size: 3.5rem;
+        font-weight: bolder;
+        text-align: center;
+        padding: 1rem;
+        color: #DD8092;
+    }
+    
+    #listInput {
+        font-family: Montserrat;
+        font-weight: normal;
+        font-size: 1.5rem;
+        margin-left: 2rem;
+        padding: 2rem;
+        width: 65%;
+        height: 30vh;
+        box-sizing: border-box;
+        background: rgba(203, 187, 172, 0.9);
+        text-align: left;
+        color: #0F0E13;
+        outline: none;
+        scrollbar-base-color: #CBBBAC;
+        scrollbar-track-color: #CBBBAC;
+        scrollbar-arrow-color: #DD8092;
+    }
+    
+    #makeNewPart {
+        font-family: Montserrat;
+        font-size: 2rem;
+        color: #45B1B1;
+        background-color: #0F0E13;
+        border: 4px solid #45B1B1;
+        box-sizing: border-box;
+        padding: 1rem 1.5rem;
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+    
+    #makeNewPart span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    
+    #makeNewPart span:after {
+        content: '\226B';
+        /* >> entity
+    /*content: '\25B9'; small right pointing triangle*/
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    
+    #makeNewPart:hover span {
+        padding-right: 25px;
+    }
+    
+    #makeNewPart:hover span:after {
+        opacity: 1;
+        right: 0;
     }
