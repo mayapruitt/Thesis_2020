@@ -36,6 +36,13 @@ app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname + "/views/index.html"))
 });
 
+app.get("/intro", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "/views/intro.html"))
+})
+
+app.get("/create", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "/views/create.html"))
+})
 
 
 // ---- ADD YOUR API ENDPOINTS HERE ----
@@ -45,7 +52,8 @@ app.get("/api/v1/database", async(req, res) => {
         const data = await database.find();
         res.json(data);
         console.log("displaying all data");
-        analysis.compare.simulateUsers(analysis.listData.lists);
+        //analysis.compare.simulateUsers(analysis.listData.lists);
+
     } catch (error) {
         console.error(error);
         res.json(error);
@@ -58,7 +66,7 @@ app.post("/api/v1/database", async(req, res) => {
         const newData = {
             list: req.body.list
         }
-        matching.pipeline(req.body.list);
+        console.log(analysis.compare.pipeline(req.body.list));
         const data = await database.create(newData);
         res.json(data);
     } catch (error) {
