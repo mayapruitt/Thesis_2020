@@ -13,7 +13,7 @@ async function DOMLoaded(event) {
     response = await response.json();
 
     console.log("DOM LOADED!\n");
-    listInput = document.getElementById("listInput");
+    userInput = document.getElementById("listInput");
 
     //Add event listeners to buttons
     document.querySelector(".choiceButton__A").addEventListener("click", simNav)

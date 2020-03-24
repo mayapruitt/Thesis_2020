@@ -6,12 +6,12 @@ document.addEventListener("DOMContentLoaded", DOMLoaded);
 function DOMLoaded(event) {
 
     console.log("DOM LOADED!\n");
-    listInput = document.getElementById("listInput");
+    userInput = document.getElementById("listInput");
 
     //Add event listeners to buttons
     document.getElementById("makeNewPart").addEventListener("click", makeNewParticipant);
 
-    listInput.value = "";
+    userInput.value = "";
 
 }
 
@@ -20,7 +20,7 @@ function DOMLoaded(event) {
 async function makeNewParticipant(event) {
     try {
         const newData = {
-            list: listInput.value.split("\n")
+            list: userInput.value.split("\n")
         };
         var options = {
             method: 'POST',
@@ -40,7 +40,7 @@ async function makeNewParticipant(event) {
         window.location.href = "/04_evaluate"
 
 
-        listInput.value = "";
+        userInput.value = "";
     } catch (error) {
         console.error(error);
     }
