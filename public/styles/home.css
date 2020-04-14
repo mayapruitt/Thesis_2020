@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -14,9 +13,26 @@
     color: teal;
 }
 
+
 /* .debug { */
+
+
 /*     border: 1px solid red; */
+
+
 /* } */
+
+#listInput {
+    height: 200px;
+    width: 600px;
+    text-align: left;
+}
+
+#choiceTextArea {
+    height: 200px;
+    width: 600px;
+    text-align: left;
+}
 
 .instructionsContainer {
     color: lime;
@@ -27,7 +43,6 @@
     margin-left: auto;
     margin-right: auto;
     border: 1px solid green;
-
 }
 
 .statusMessage {
@@ -37,6 +52,7 @@
 .tableText {
     color: lime;
 }
+
 .instructions {
     font-size: 25px;
     color: purple;
@@ -50,21 +66,19 @@
 #finalMessage {
     color: gold;
 }
-    
+
 html {
     font-size: 16px
 }
-    
+
 body {
     font-family: Montserrat;
     background: black;
 }
-    
+
 a,
 a:link,
 a:visited {
     color: black;
     text-decoration: none
 }
-
-    

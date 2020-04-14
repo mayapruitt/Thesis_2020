@@ -19,7 +19,7 @@ function DOMLoaded(event) {
 //Make a new participant
 async function makeNewParticipant(event) {
     try {
-	var divArea = document.querySelector("#userListInput");
+        var divArea = document.querySelector("#userListInput");
         const newData = {
             list: userInput.value.split("\n")
         };
@@ -29,41 +29,41 @@ async function makeNewParticipant(event) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newData)
         };
-	//Check for empty input
-	if(document.querySelector("#listInput").value == ""){
-	    console.log("Empty list!");
-	    return;
-	}
-	userInput.value = "";
-	//Ensure user can not resubmit list
-	divArea.removeChild(document.querySelector("#listInputArea"));
-	divArea.removeChild(document.querySelector("#listInputInstructions"));
+        //Check for empty input
+        if (document.querySelector("#listInput").value == "") {
+            console.log("Empty list!");
+            return;
+        }
+        userInput.value = "";
+        //Ensure user can not resubmit list
+        divArea.removeChild(document.querySelector("#listInputArea"));
+        divArea.removeChild(document.querySelector("#listInputInstructions"));
 
-	//Provide message that list has been sent
-	var listSubmitNotify = document.createElement("P");
-	listSubmitNotify.id = "listSubmitNotify";
-	listSubmitNotify.className = "statusMessage";
-	listSubmitNotify.innerHTML = "List sent! Waiting for result";
-	document.querySelector("#listComparisonArea").appendChild(listSubmitNotify);
-	
+        //Provide message that list has been sent
+        var listSubmitNotify = document.createElement("P");
+        listSubmitNotify.id = "listSubmitNotify";
+        listSubmitNotify.className = "statusMessage";
+        listSubmitNotify.innerHTML = "List sent! Waiting for result";
+        document.querySelector("#listComparisonArea").appendChild(listSubmitNotify);
+
         //Get the IDs of the most similar and different lists
         let res = await fetch("/api/parselist", options);
         let response = await res.json();
 
-	var userID = JSON.parse(response.userObj)._id;
-	var simID = JSON.parse(response.sim)[0]._id;
-	var diffID = JSON.parse(response.diff)[0]._id;
-	sessionIDs = [userID, simID, diffID];
-	listSubmitNotify.innerHTML = "List sent!";
-	listComparison(response);
-	
+        var userID = JSON.parse(response.userObj)._id;
+        var simID = JSON.parse(response.sim)[0]._id;
+        var diffID = JSON.parse(response.diff)[0]._id;
+        sessionIDs = [userID, simID, diffID];
+        listSubmitNotify.innerHTML = "List sent!";
+        listComparison(response);
+
 
     } catch (error) {
         console.error(error);
     }
 }
 
-function listComparison(resp){
+function listComparison(resp) {
 
     var simList, diffList, userList;
     var simButt, diffButt, userShow;
@@ -71,7 +71,7 @@ function listComparison(resp){
     var instructionMess = document.createElement("P");
     instructionMess.id = "listInstructionMess";
     instructionMess.className = "instructions";
-    instructionMess.innerHTML = "Please select which list you find to be more creative";
+    instructionMess.innerHTML = "Which list do you think is more creative?";
     divArea.appendChild(instructionMess);
 
     var listTable = document.createElement("TABLE");
@@ -115,21 +115,21 @@ function listComparison(resp){
     buttonRow.appendChild(userShow);
     buttonRow.appendChild(simButtContainer);
     buttonRow.appendChild(diffButtContainer);
-    
+
 
     var objDiff = JSON.parse(resp.diff);
-    
+
     //List row data
     simList = document.createElement("TD");
     JSON.parse(resp.sim)[0].list.forEach((element) => {
-	simList.innerHTML += (element + "<br>");
+        simList.innerHTML += (element + "<br>");
     });
     simList.id = "simList";
     simList.classList = "table tableText";
 
     diffList = document.createElement("TD");
     JSON.parse(resp.diff)[0].list.forEach((element) => {
-	diffList.innerHTML += (element + "<br>");
+        diffList.innerHTML += (element + "<br>");
     });
     diffList.id = "diffList";
     diffList.classList = "table tableText";
@@ -137,7 +137,7 @@ function listComparison(resp){
     userList = document.createElement("TD");
 
     JSON.parse(resp.userObj).list.forEach((element) => {
-	userList.innerHTML += (element + "<br>");
+        userList.innerHTML += (element + "<br>");
     });
     userList.id = "userList";
     userList.classList = "table tableText";
@@ -156,7 +156,7 @@ function listComparison(resp){
 }
 
 
-function choseSim(){
+function choseSim() {
     document.querySelector("#simButtContainer").removeChild(document.querySelector("#simButt"));
     document.querySelector("#diffButtContainer").removeChild(document.querySelector("#diffButt"));
     document.querySelector("#simButtContainer").style.color = "gold";
@@ -164,7 +164,7 @@ function choseSim(){
     reasonDisplay(0);
 }
 
-function choseDiff(){
+function choseDiff() {
     document.querySelector("#simButtContainer").removeChild(document.querySelector("#simButt"));
     document.querySelector("#diffButtContainer").removeChild(document.querySelector("#diffButt"));
     document.querySelector("#diffButtContainer").style.color = "gold";
@@ -172,14 +172,14 @@ function choseDiff(){
     reasonDisplay(1);
 }
 
-function reasonDisplay(type){
+function reasonDisplay(type) {
 
     choice = type;
     var divArea = document.querySelector("#listChoiceReasonArea");
     var instructionMess = document.createElement("P");
     instructionMess.id = "choiceInstructionMess";
     instructionMess.className = "instructions";
-    instructionMess.innerHTML = "Please explain why you chose that list";
+    instructionMess.innerHTML = "Why did you choose that list? (Please try to elaborate on your answer)";
     divArea.appendChild(instructionMess);
 
     var textBox = document.createElement("TEXTAREA");
@@ -199,32 +199,32 @@ function reasonDisplay(type){
 }
 
 
-async function saveChoiceReason(){
+async function saveChoiceReason() {
     var divArea = document.querySelector("#listChoiceReasonArea");
     var reason = document.querySelector("#choiceTextArea").value;
     //Ensure the user can not submit the reason twice
     divArea.removeChild(document.querySelector("#choiceTextArea"));
     divArea.removeChild(document.querySelector("#submitButtonContainer"));
-    
+
     var listSubmitNotify = document.createElement("P");
     listSubmitNotify.id = "choiceSubmitNotify";
     listSubmitNotify.innerHTML = "Reasons sent! Waiting for processing!";
     listSubmitNotify.className = "statusMessage";
     document.querySelector("#listChoiceReasonArea").appendChild(listSubmitNotify);
-    
+
 
     const sendData = {
-	"id" : sessionIDs[0],
-	"sim" : sessionIDs[1],
-	"diff" : sessionIDs[2],
-	"choice" : choice ? "different" : "similar",
-	"choiceReason": reason
+        "id": sessionIDs[0],
+        "sim": sessionIDs[1],
+        "diff": sessionIDs[2],
+        "choice": choice ? "different" : "similar",
+        "choiceReason": reason
     };
-    
+
     const options = {
-	
-	//[TODO] send to backend and store
-	method: 'POST',
+
+        //[TODO] send to backend and store
+        method: 'POST',
         //tells the server how the data is being sent over
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(sendData)
@@ -242,7 +242,7 @@ async function saveChoiceReason(){
     finalMessage.innerHTML = mess;
     document.querySelector("#listChoiceReasonArea").appendChild(finalMessage);
 
-    
+
 
 
 }
