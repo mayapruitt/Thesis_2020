@@ -6,79 +6,132 @@
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
+    font-size: 16px;
+}
+
+
+/* .debug {
+    border: 1px solid red;
+} */
+
+@font-face {
+    font-family: AbrilFatface;
+    src: url(/styles/fonts/AbrilFatface-Regular.ttf);
+}
+
+@font-face {
+    font-family: OpenSans Regular;
+    src: url(/styles/fonts/OpenSans-Regular.ttf);
+}
+
+body {
+    background-color: #E6DDDF;
 }
 
 .phaseHeader {
-    font-size: 45px;
-    color: teal;
+    font-family: AbrilFatFace;
+    font-size: 2rem;
+    color: #363436;
+    padding: 0;
+    margin: 0;
 }
 
+#mainInstructions {
+    padding: 0;
+    font-family: OpenSans Regular;
+    font-weight: lighter;
+    font-size: 3rem;
+    color: #363436;
+}
 
-/* .debug { */
+#listCreationObject {
+    font-family: AbrilFatFace;
+    font-size: 3em;
+    color: #363436;
+}
 
-
-/*     border: 1px solid red; */
-
-
-/* } */
+#listInputInstructions {
+    padding: 0;
+    font-family: OpenSans Regular;
+    font-weight: lighter;
+    font-size: .75rem;
+    color: #363436;
+}
 
 #listInput {
     height: 200px;
     width: 600px;
     text-align: left;
+    font-size: 1rem;
+    font-family: OpenSans Regular;
+}
+
+#listInputArea {
+    display: flex;
+    flex-direction: column;
+    color: #363436;
 }
 
 #choiceTextArea {
     height: 200px;
     width: 600px;
     text-align: left;
-}
-
-.instructionsContainer {
-    color: lime;
+    color: #363436;
+    font-family: OpenSans Regular;
 }
 
 .table {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid green;
+    border: 1px solid#363436;
 }
 
 .statusMessage {
-    color: white;
+    color: green;
 }
 
 .tableText {
-    color: lime;
-}
-
-.instructions {
-    font-size: 25px;
-    color: purple;
-}
-
-#listCreationObject {
-    font-size: 50px;
-    color: lime;
+    color: #363436;
 }
 
 #finalMessage {
-    color: gold;
+    color: green;
 }
 
-html {
-    font-size: 16px
+.button {
+    display: inline-block;
+    border: 2px solid #363436;
+    background-color: transparent;
+    color: #363436;
+    text-align: center;
+    font-family: OpenSans Regular;
+    transition: all 0.5s;
+    cursor: pointer;
 }
 
-body {
-    font-family: Montserrat;
-    background: black;
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
 }
 
-a,
-a:link,
-a:visited {
-    color: black;
-    text-decoration: none
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    text-align: center;
+    opacity: 0;
+    top: 10px;
+    right: 20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 20px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
 }

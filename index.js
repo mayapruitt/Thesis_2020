@@ -19,9 +19,17 @@ app.use(express.static(path.resolve(`${__dirname}/public`)));
 //Set up the database connection
 dbInteraction.connect(config.MONGODB_URI);
 
+app.get("/tutorial", async(req, res) => {
+    //Uncomment if the database needs to be reinitialized
+    //dbInteraction.queries.deleteAllDictionaryWords();
+    //dbInteraction.queries.deleteAllUsers();
+    //nlp.pipelines.simulateUsers(nlp.listData.lists);
+    res.sendFile(path.resolve(__dirname + "/views/tutorial.html"))
+});
 
-//Return the homepage upon initialization
-app.get("/", async (req, res) => {
+
+
+app.get("/1", async(req, res) => {
     //Uncomment if the database needs to be reinitialized
     //dbInteraction.queries.deleteAllDictionaryWords();
     //dbInteraction.queries.deleteAllUsers();
@@ -29,28 +37,38 @@ app.get("/", async (req, res) => {
     res.sendFile(path.resolve(__dirname + "/views/home.html"))
 });
 
+
+//Return the homepage upon initialization
+app.get("/", async(req, res) => {
+    //Uncomment if the database needs to be reinitialized
+    //dbInteraction.queries.deleteAllDictionaryWords();
+    //dbInteraction.queries.deleteAllUsers();
+    //nlp.pipelines.simulateUsers(nlp.listData.lists);
+    res.sendFile(path.resolve(__dirname + "/views/1.html"))
+});
+
 //GET
 app.get("/api/getList/:id", async(req, res) => {
     try {
-	console.log(req.params.id);
+        console.log(req.params.id);
         const data = await dbInteraction.queries.getListFromId(req.params.id);
         console.log("displaying all data");
         res.json(data);
-    }catch(error){
-	console.error(error);
-	res.json(error);
+    } catch (error) {
+        console.error(error);
+        res.json(error);
     }
 });
 
 //GET
 app.get("/api/getallusers", async(req, res) => {
 
-    try{
-	const data = await dbInteraction.queries.getAllUsers();
-	res.json(data);
-    }catch(err){
-	console.error(err);
-	res.json(err);
+    try {
+        const data = await dbInteraction.queries.getAllUsers();
+        res.json(data);
+    } catch (err) {
+        console.error(err);
+        res.json(err);
     }
 
 });
@@ -59,21 +77,21 @@ app.get("/api/getallusers", async(req, res) => {
 app.post("/api/parselist", async(req, res) => {
     try {
 
-	const newData = {
+        const newData = {
             list: req.body.list
         }
-	
-	//0: the new database object, 1: most similar list, 2: most different list
+
+        //0: the new database object, 1: most similar list, 2: most different list
         let [newObj, sim, diff] = await nlp.pipelines.userListPipeline(newData.list);
 
-	// const data = await userDatabase.create(newData);
+        // const data = await userDatabase.create(newData);
         res.json({
-	    userObj: JSON.stringify(newObj),
+            userObj: JSON.stringify(newObj),
             sim: JSON.stringify(sim),
             diff: JSON.stringify(diff)
         });
 
-	
+
     } catch (error) {
         console.error(error);
         res.json(error);
@@ -81,29 +99,27 @@ app.post("/api/parselist", async(req, res) => {
 });
 
 app.post("/api/parsereason", async(req, res) => {
-    try{
+    try {
 
-	const newData = {
-	    id: req.body.id,
-	    sim: req.body.sim,
-	    diff: req.body.diff,
-	    choice: req.body.choice,
-	    choiceReason: req.body.choiceReason
-	};
+        const newData = {
+            id: req.body.id,
+            sim: req.body.sim,
+            diff: req.body.diff,
+            choice: req.body.choice,
+            choiceReason: req.body.choiceReason
+        };
 
-	var ret = await dbInteraction.queries.updateUserWithChoice(newData);
-	res.json("PARSED REASON");
-	
-    }catch(error){
-	console.log(error);
-	res.json(error);
+        var ret = await dbInteraction.queries.updateUserWithChoice(newData);
+        res.json("PARSED REASON");
+
+    } catch (error) {
+        console.log(error);
+        res.json(error);
     }
 });
-	
+
 
 // Start listening
 app.listen(PORT, () => {
     console.log(`see the magic: http://localhost:${PORT}`);
 })
-
-

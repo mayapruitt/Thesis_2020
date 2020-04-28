@@ -159,7 +159,7 @@ function listComparison(resp) {
 function choseSim() {
     document.querySelector("#simButtContainer").removeChild(document.querySelector("#simButt"));
     document.querySelector("#diffButtContainer").removeChild(document.querySelector("#diffButt"));
-    document.querySelector("#simButtContainer").style.color = "gold";
+    document.querySelector("#simButtContainer").style.color = "green";
     document.querySelector("#simButtContainer").innerHTML = "SELECTED";
     reasonDisplay(0);
 }
@@ -167,7 +167,7 @@ function choseSim() {
 function choseDiff() {
     document.querySelector("#simButtContainer").removeChild(document.querySelector("#simButt"));
     document.querySelector("#diffButtContainer").removeChild(document.querySelector("#diffButt"));
-    document.querySelector("#diffButtContainer").style.color = "gold";
+    document.querySelector("#diffButtContainer").style.color = "green";
     document.querySelector("#diffButtContainer").innerHTML = "SELECTED";
     reasonDisplay(1);
 }
