@@ -4,3 +4,4 @@ exports.dictionary = require("./dictionary.js")
 exports.vectors = require("./vector.js");
 exports.linearMath = require("./linearMath.js");
 exports.pipelines = require("./pipelines.js");
+exports.classification = require("./classification.js");

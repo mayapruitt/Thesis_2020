@@ -2,7 +2,9 @@
 var listProcessing = require("./listProcessing.js");
 var dictionaryOps = require("./dictionary.js");
 var vectorOps = require("./vector.js");
+var classification = require("./classification");
 var dbInteraction = require("../dbInteraction");
+
 
 async function simUsers(lists) {
     for (let i = 0; i < lists.length; i++) {
@@ -61,3 +63,25 @@ async function uPipeL(li) {
 }
 
 exports.userListPipeline = uPipeL;
+
+
+function classPipeline(text){
+
+    if(!classification.initialized){
+	classification.initializeNet();
+	classification.initialized = 1;
+    }
+
+    console.log(`PARSING THE RESULTS OF [${text}]!\n`);
+    let results = classification.classifyText(classification.makeVec(text));
+    let breakdown = classification.textBreakDown(text);
+
+    const stats = {
+	results: results,
+	breakdown: breakdown
+    }
+
+    console.log(stats);
+    return stats;
+}
+exports.classificationPipeline = classPipeline;

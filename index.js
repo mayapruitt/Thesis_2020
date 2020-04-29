@@ -73,6 +73,29 @@ app.get("/api/getallusers", async(req, res) => {
 
 });
 
+app.get("/trials/classification", (req, res) => {
+
+    res.sendFile(path.resolve(__dirname + "/views/classification.html"));
+    
+});
+
+app.post("/trials/classification", (req, res) => {
+
+    try{
+	const newData  = {
+	    text: req.body.text
+	}
+
+	res.json(nlp.pipelines.classificationPipeline(newData.text));
+	
+    }catch(err){
+	console.error(`There was an error! [${err}]`);
+	res.json(err);
+    }
+});
+
+	
+
 //POST
 app.post("/api/parselist", async(req, res) => {
     try {

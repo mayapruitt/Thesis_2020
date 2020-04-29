@@ -1,4 +1,4 @@
-let listInput;
+et listInput;
 var sessionIDs;
 var choice;
 document.addEventListener("DOMContentLoaded", DOMLoaded);
