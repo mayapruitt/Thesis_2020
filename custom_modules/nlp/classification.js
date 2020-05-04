@@ -4,6 +4,7 @@ var vectorOps = require("./vector.js");
 var brain = require("brain.js")
 var fs = require('fs')
 
+
 const net = new brain.NeuralNetwork();
 let dict;
 let map = {};
@@ -14,6 +15,7 @@ let color  = {
     press: 'green'
 };
 let jsonObj;
+const phraseFN = "./assets/datasets/jsonPhraseData.json";
 function csvColsToJSON(csvFile){
 
     var f = fs.readFileSync(csvFile, 'utf8');
@@ -55,6 +57,34 @@ function csvColsToJSON(csvFile){
 
 	      
     return jsonObj;
+
+}
+
+function csvToJSON(csvFile){
+
+    let f = fs.readFileSync(csvFile, 'utf8');
+    let rows = f.split("\n").slice(1);
+    let jsonObj = '{ \n"phrases" : [\n';
+    rows.forEach((row) => {
+
+	let col = row.split("\t");
+	let jsonStr = `{\n"class" : "${col[0]}",\n"phrase" : "${col[1]}",\n`;
+	jsonStr += '"info" : [\n';
+
+	//Add the info to the JSON object
+	col.slice(2).forEach((info) => {
+	    info = info.trim();
+	    info = info.replace(/\"/g, '\\\"');
+	    jsonStr += `"${info}",\n`;
+	});
+	jsonStr = jsonStr.substr(0, jsonStr.length - 2);
+	jsonStr += ']\n}';
+
+	jsonObj += `${jsonStr},\n`;
+    });
+    jsonObj = jsonObj.substr(0, jsonObj.length - 2);
+    jsonObj += ']\n}';
+    fs.writeFileSync(phraseFN, jsonObj);
 
 }
 
@@ -156,5 +186,9 @@ function txtBreakDown(text){
     return text;
 
 }
-
 exports.textBreakDown = txtBreakDown;
+
+
+csvToJSON("./assets/datasets/itpthesis-pf.tsv");
+jsonPhrase = JSON.parse(fs.readFileSync(phraseFN, 'utf8'));
+console.log(jsonPhrase);
