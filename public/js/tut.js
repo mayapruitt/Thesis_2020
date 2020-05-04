@@ -11,5 +11,5 @@ function DOMLoaded(event) {
 
 
 function gotoExperiment() {
-    window.location = "/1";
+    window.location = "/experiment";
 }
