@@ -29,12 +29,12 @@ app.get("/tutorial", async(req, res) => {
 
 
 
-app.get("/1", async(req, res) => {
+app.get("/experiment", async(req, res) => {
     //Uncomment if the database needs to be reinitialized
     //dbInteraction.queries.deleteAllDictionaryWords();
     //dbInteraction.queries.deleteAllUsers();
     //nlp.pipelines.simulateUsers(nlp.listData.lists);
-    res.sendFile(path.resolve(__dirname + "/views/home.html"))
+    res.sendFile(path.resolve(__dirname + "/views/experiment.html"))
 });
 
 
@@ -44,7 +44,7 @@ app.get("/", async(req, res) => {
     //dbInteraction.queries.deleteAllDictionaryWords();
     //dbInteraction.queries.deleteAllUsers();
     //nlp.pipelines.simulateUsers(nlp.listData.lists);
-    res.sendFile(path.resolve(__dirname + "/views/1.html"))
+    res.sendFile(path.resolve(__dirname + "/views/home.html"))
 });
 
 //GET
@@ -76,25 +76,25 @@ app.get("/api/getallusers", async(req, res) => {
 app.get("/trials/classification", (req, res) => {
 
     res.sendFile(path.resolve(__dirname + "/views/classification.html"));
-    
+
 });
 
 app.post("/trials/classification", (req, res) => {
 
-    try{
-	const newData  = {
-	    text: req.body.text
-	}
+    try {
+        const newData = {
+            text: req.body.text
+        }
 
-	res.json(nlp.pipelines.classificationPipeline(newData.text));
-	
-    }catch(err){
-	console.error(`There was an error! [${err}]`);
-	res.json(err);
+        res.json(nlp.pipelines.classificationPipeline(newData.text));
+
+    } catch (err) {
+        console.error(`There was an error! [${err}]`);
+        res.json(err);
     }
 });
 
-	
+
 
 //POST
 app.post("/api/parselist", async(req, res) => {
