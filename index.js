@@ -20,20 +20,12 @@ app.use(express.static(path.resolve(`${__dirname}/public`)));
 dbInteraction.connect(config.MONGODB_URI);
 
 app.get("/tutorial", async(req, res) => {
-    //Uncomment if the database needs to be reinitialized
-    //dbInteraction.queries.deleteAllDictionaryWords();
-    //dbInteraction.queries.deleteAllUsers();
-    //nlp.pipelines.simulateUsers(nlp.listData.lists);
     res.sendFile(path.resolve(__dirname + "/views/tutorial.html"))
 });
 
 
 
 app.get("/experiment", async(req, res) => {
-    //Uncomment if the database needs to be reinitialized
-    //dbInteraction.queries.deleteAllDictionaryWords();
-    //dbInteraction.queries.deleteAllUsers();
-    //nlp.pipelines.simulateUsers(nlp.listData.lists);
     res.sendFile(path.resolve(__dirname + "/views/experiment.html"))
 });
 
@@ -86,7 +78,8 @@ app.post("/trials/classification", (req, res) => {
             text: req.body.text
         }
 
-        res.json(nlp.pipelines.classificationPipeline(newData.text));
+        res.json(nlp.pipelines.classificationPipeline(
+	    path.resolve(__dirname + "/assets/datasets/"), "itpthesis-pf.tsv", newData));
 
     } catch (err) {
         console.error(`There was an error! [${err}]`);
@@ -144,5 +137,5 @@ app.post("/api/parsereason", async(req, res) => {
 
 // Start listening
 app.listen(PORT, () => {
-    console.log(`see the magic: http://localhost:${PORT}`);
+    console.log(`Server running on port: http://localhost:${PORT}`);
 })

@@ -28,9 +28,12 @@ async function submitText(){
     p.innerHTML = JSON.stringify(response.results);
     document.getElementById("nnResults").appendChild(p);
 
-    let p1 = document.createElement("P");
-    p1.innerHTML = response.breakdown;
-    document.getElementById("breakdown").appendChild(p1);
+    let bd = document.getElementById("breakdown");
+    bd.innerHTML = response.breakdown;
+    // let p1 = document.createElement("P");
+    
+    // p1.innerHTML = response.breakdown;
+    // document.getElementById("breakdown").appendChild(p1);
 					    
 
     

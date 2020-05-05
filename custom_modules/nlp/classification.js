@@ -1,3 +1,4 @@
+var formatting = require("./formatting.js");
 var listProcessing = require("./listProcessing.js");
 var dictionaryOps = require("./dictionary.js");
 var vectorOps = require("./vector.js");
@@ -6,8 +7,11 @@ var fs = require('fs')
 
 
 const net = new brain.NeuralNetwork();
+exports.net = net;
+
 let dict;
 let map = {};
+
 let color  = {
     person: 'purple',
     process: 'blue',
@@ -15,89 +19,14 @@ let color  = {
     press: 'green'
 };
 let jsonObj;
-const phraseFN = "./assets/datasets/jsonPhraseData.json";
-function csvColsToJSON(csvFile){
-
-    var f = fs.readFileSync(csvFile, 'utf8');
-    f = f.split("\n");
-    headers = f[0].trim().split(",");
-
-    //format the JSON object
-    jsonObj = '{ \n"classes" : [ \n';
-    headers.forEach((item) => {
-	item = item.trim();
-	jsonObj += `{"class" : "${item}",\n"phrases" : [] },\n`;
-    });
-    jsonObj = jsonObj.substr(0, jsonObj.length - 2);
-    jsonObj += "\n] \n}";
-
-    //Convert from string to a JSON object
-    jsonObj = JSON.parse(jsonObj);
-
-    
-    f.forEach((item, num) => {
-	if(num > 0){
-	    item.trim().split(",").forEach((p, ind) => {
-		//p = listProcessing.preprocessString(p);
-		if(p != ""){
-		    p = p.trim();
-		    jsonObj.classes[ind].phrases.push(p);
-		    map[`${p}`] = jsonObj.classes[ind].class;
-		}
-	    });
-	    
-	}
-    });
-
-    jsonObj.classes.forEach((category) => {
-	category.phrases.forEach((phrase) => {
-	    fs.appendFileSync("data.csv", `${category.class},${phrase},\n`);
-	});
-    });
-
-	      
-    return jsonObj;
-
-}
-
-function csvToJSON(csvFile){
-
-    let f = fs.readFileSync(csvFile, 'utf8');
-    let rows = f.split("\n").slice(1);
-    let jsonObj = '{ \n"phrases" : [\n';
-    rows.forEach((row) => {
-
-	let col = row.split("\t");
-	let jsonStr = `{\n"class" : "${col[0]}",\n"phrase" : "${col[1]}",\n`;
-	jsonStr += '"info" : [\n';
-
-	//Add the info to the JSON object
-	col.slice(2).forEach((info) => {
-	    info = info.trim();
-	    info = info.replace(/\"/g, '\\\"');
-	    jsonStr += `"${info}",\n`;
-	});
-	jsonStr = jsonStr.substr(0, jsonStr.length - 2);
-	jsonStr += ']\n}';
-
-	jsonObj += `${jsonStr},\n`;
-    });
-    jsonObj = jsonObj.substr(0, jsonObj.length - 2);
-    jsonObj += ']\n}';
-    fs.writeFileSync(phraseFN, jsonObj);
-
-}
-
 
 function wordsToDict(data){
     let dict = []
-    data.classes.forEach((category) => {
-	category.phrases.forEach((phrase) => {
-	    phrase.split(" ").forEach((word) =>{		
-		if(!dict.includes(word) && word != ""){
-		    dict.push(word);
-		}
-	    });
+    data.phrases.forEach((phrase) => {
+	phrase.phrase.split(" ").forEach((word) => {
+	    if(!dict.includes(word) && word != ""){
+		dict.push(word);
+	    }
 	});
     });
     return dict;
@@ -111,23 +40,21 @@ function mkVec(phrase){
 exports.makeVec = mkVec;
 
 
+//Format the data for training
 function formatForTraining(data, dict){
 
     let tData = [];
-    data.classes.forEach((category, ind) => {
-	category.phrases.forEach((phrase) => {
-	    let vec = mkVec(phrase, dict);
-	    tData.push({input: vec, output: JSON.parse(`{ "${category.class}" : 1 }`)});
-	});
-
+    data.phrases.forEach((phrase, ind) => {
+	let vec = mkVec(phrase.phrase, dict);
+	tData.push({input: vec, output: JSON.parse(`{ "${phrase.class}" : 1 }`)});
     });
     return tData;
-
 }
 
-function initNet(){
-    let rawData = csvColsToJSON("./assets/datasets/keyword_classification.csv");
-
+//Initialize the NN
+function initNet(dataFile, dataDir){
+    let rawData = formatting.tsvToJSON(dataFile, dataDir);
+    jsonObj = rawData;
     console.log("Creating dictionary!");
     dict = wordsToDict(rawData);
 
@@ -135,60 +62,55 @@ function initNet(){
     let tData = formatForTraining(rawData, dict);
 
     console.log("Training the network!");
-    net.train(tData, {errorThresh: 0.014, log: true });
+    net.train(tData, {log: true });
+    
 }
 exports.initializeNet = initNet;
-
 exports.initialized = 0;
 
+//Use the NN to classify the text
 function classifyTxt(vec){
     return net.run(vec, dict);
 }
 exports.classifyText = classifyTxt
 
+//Parse the text and identify keywords
 function txtBreakDown(text){
 
     let str = text.slice(0, text.length);
-    
-    let classes = jsonObj.classes;
-    let c;
-    classes.forEach((classEl, index) => {
-	switch(index){
-	case 0:
-	    c = "blue";
-	    break;
-	case 1:
-	    c = "green";
-	    break;
-	case 2:
-	    c = "red";
-	    break;
-	case 3:
-	    c = "purple";
-	    break;
-	default:
-	    break;
+    str = str.toLowerCase();
+    text = str;
+    console.log(str);
+    let phrases = jsonObj.phrases;
+
+    //Cycle through all phrases
+    phrases.forEach((phrase, index) => {
+	phrase.infoIt = 0;
+
+	//See if the phrase is contained in the text
+	if(str.match(`(\\W|^)${phrase.phrase}(\\W|$)`)){
+	    let found = [];
+	    console.log('surely!');
+	    //Find all offets of the matchin in the text
+	    text.replace(new RegExp(phrase.phrase, 'g'), (match, index) => {
+		found.push(index);
+	    });
+
+	    //Replace all matches with the augmented text
+	    found.reverse().forEach((index) => {
+		text = text.substr(0, index) + `<div class="phrase"><span style="color:${color[phrase.class]}"><span class="phrase-info">${phrase.info[phrase.infoIt++]}</span>${str.substr(index, phrase.phrase.length)}</span></div>` + text.substr(index + phrase.phrase.length);
+		phrase.infoIt = phrase.infoIt >= phrase.info.length ? 0 : phrase.infoIt;
+	    });
 	}
-	classEl.phrases.sort((a,b) => {
-	    return b.length - a.length
-	});
-	    
-	classEl.phrases.forEach((element) => {
-	    if(text.includes(` ${element}`)){
-		console.log("EE" + element);
-		text = text.replace(element, `<span style="color:${color[classEl.class]}">${element}</span>`);
-		console.log(text);
-	    }
-	});
     });
     
-
     return text;
 
 }
 exports.textBreakDown = txtBreakDown;
 
+function netVis(vec){
+    return brain.utilities.toSVG(net, {height: "1500", width: "1200"});
+}
+exports.netVisualization = netVis;
 
-csvToJSON("./assets/datasets/itpthesis-pf.tsv");
-jsonPhrase = JSON.parse(fs.readFileSync(phraseFN, 'utf8'));
-console.log(jsonPhrase);

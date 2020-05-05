@@ -65,23 +65,23 @@ async function uPipeL(li) {
 exports.userListPipeline = uPipeL;
 
 
-function classPipeline(text){
+function classPipeline(dataDir, dataFile, text){
 
     if(!classification.initialized){
-	classification.initializeNet();
+	console.log(`Parsing ${dataFile}`);
+	classification.initializeNet(`${dataDir}/${dataFile}`, dataDir);
 	classification.initialized = 1;
     }
 
-    console.log(`PARSING THE RESULTS OF [${text}]!\n`);
-    let results = classification.classifyText(classification.makeVec(text));
-    let breakdown = classification.textBreakDown(text);
-
+    console.log(`PARSING THE RESULTS OF [${text.text}]!\n`);
+    let results = classification.classifyText(classification.makeVec(text.text));
+    let breakdown = classification.textBreakDown(text.text);
     const stats = {
 	results: results,
-	breakdown: breakdown
+	breakdown: breakdown,
     }
 
-    console.log(stats);
+    //console.log(stats);
     return stats;
 }
 exports.classificationPipeline = classPipeline;
