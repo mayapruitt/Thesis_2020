@@ -43,26 +43,26 @@ body {
     font-family: CenturyGothic;
     font-size: 2rem;
     text-align: center;
-    color: black;
+    color: #363436;
 }
 
 .instructions {
     font-family: CenturyGothic;
     font-size: 2rem;
     text-align: center;
-    color: black;
+    color: #363436;
 }
 
 .timer {
     font-family: AbrilFatFace;
-    font-size: 4rem;
-    color: black;
+    font-size: 3.5rem;
+    color: #363436;
 }
 
 .object {
     font-family: AbrilFatFace;
     font-size: 4rem;
-    color: black;
+    color: #363436;
 }
 
 .submitButton {
@@ -88,7 +88,7 @@ body {
     box-shadow: inset 14px 14px 29px #a1a1a1, inset -14px -14px 29px #fbfbfb;
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: black;
 }
 
@@ -100,8 +100,14 @@ body {
     box-shadow: inset 14px 14px 29px #a1a1a1, inset -14px -14px 29px #fbfbfb;
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: black;
+}
+
+#listSubmitNotify {
+    font-family: AbrilFatface;
+    font-size: 2rem;
+    color: #5569D4;
 }
 
 #submitListButton {
@@ -151,13 +157,14 @@ body {
     right: 0;
 }
 
+
 /* EVAL STYLING */
 
 #evalInstructions {
     font-family: CenturyGothic;
     font-size: 2rem;
     text-align: center;
-    color: black;
+    color: #363436;
 }
 
 #listsContainer {
@@ -168,7 +175,16 @@ body {
     justify-content: space-evenly;
 }
 
+.userListSpace {
+    font-family: CenturyGothic;
+    font-size: 1.5rem;
+    color: #363436;
+}
+
 #yourListArea {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    color: black;
     width: 25vw;
     background-color: transparent;
     border-radius: 21px;
@@ -182,24 +198,33 @@ body {
     box-shadow: 7px 7px 14px #ababab, -7px -7px 14px #f1f1f1;
     transition: all 0.5s;
     cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    color: black;
 }
 
 .listButtonChosen {
     border-radius: 21px;
     width: 25vw;
-    background: linear-gradient(145deg, #dcdcdc, #00ff00);
+    background: linear-gradient(145deg, #dcdcdc, #5569D4);
     box-shadow: 7px 7px 14px #ababab, -7px -7px 14px #f1f1f1;
     transition: all 0.5s;
     cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    color: black;
 }
 
 .listButtonOther {
     border-radius: 21px;
     width: 25vw;
-    background: linear-gradient(145deg, #dcdcdc, #ff0000);
+    background: linear-gradient(145deg, #dcdcdc, gray);
     box-shadow: 7px 7px 14px #ababab, -7px -7px 14px #f1f1f1;
     transition: all 0.5s;
     cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    color: black;
 }
 
 .listButton:hover {
@@ -215,6 +240,7 @@ body {
     box-shadow: inset 14px 14px 29px #a1a1a1, inset -14px -14px 29px #fbfbfb;
 }
 
+
 /* ANALYSIS CONTENT */
 
 #analysis {
@@ -224,6 +250,23 @@ body {
 
 #userTextArea {
     width: 50vw;
+}
+
+#offboard {
+    font-family: CenturyGothic;
+    font-size: 1.5rem;
+    color: #363436;
+    text-align: left;
+    background-color: transparent;
+    border-radius: 15px;
+    box-shadow: inset 14px 14px 29px #a1a1a1, inset -14px -14px 29px #fbfbfb;
+}
+
+#offboard span {
+    font-family: AbrilFatface;
+    font-size: 1.5rem;
+    color: #363436;
+    text-align: left;
 }
 
 #userText {
@@ -258,7 +301,7 @@ body {
 .categoryName {
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
 }
 
@@ -266,24 +309,28 @@ body {
     font-family: AbrilFatface;
     font-size: 1.5rem;
     text-align: left;
+    color: #9CD6F9;
 }
 
 #person {
     font-family: AbrilFatface;
     font-size: 1.5rem;
     text-align: left;
+    color: #F49F0A;
 }
 
 #product {
     font-family: AbrilFatface;
     font-size: 1.5rem;
     text-align: left;
+    color: #00A6A6;
 }
 
 #press {
     font-family: AbrilFatface;
     font-size: 1.5rem;
     text-align: left;
+    color: #EFCA08;
 }
 
 .percent {
@@ -292,8 +339,8 @@ body {
 }
 
 .categoryButton {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     border-radius: 50px;
     background: linear-gradient(145deg, #dcdcdc, #b9b9b9);
     box-shadow: 7px 7px 14px #ababab, -7px -7px 14px #f1f1f1;
@@ -320,11 +367,6 @@ body {
 
 /* circle graphic, image as placeholder */
 
-#placeholder {
-    width: 300px;
-    height: 300px;
-}
-
 
 /* right side research info */
 
@@ -350,6 +392,7 @@ body {
     transform-origin: 50% 50%;
 }
 
+
 /* ANALYSIS BREAKDOWN STYLING */
 
 #classInput {
@@ -360,27 +403,25 @@ body {
 .phrase {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black;
+    /* border-bottom: 1px dotted black; */
 }
 
-
 .phrase .phrase-info {
-    visibility:hidden;
+    font-family: CenturyGothic;
+    font-size: 1rem;
+    visibility: hidden;
     width: 500px;
-    background-color: black;
+    background-color: rgba(54, 52, 54, 0.75);
     color: #ffffff;
-    text-align: center;
-    padding: 5px 0;
+    text-align: left;
+    padding: 1rem;
     border-radius: 6px;
-
     position: absolute;
     z-index: 1;
     top: 200%;
     left: 30%;
-    
 }
 
-.phrase:hover .phrase-info{
-    visibility:visible;
+.phrase:hover .phrase-info {
+    visibility: visible;
 }
-
