@@ -73,9 +73,9 @@ function classPipeline(dataDir, dataFile, text){
 	classification.initialized = 1;
     }
 
-    console.log(`PARSING THE RESULTS OF [${text.text}]!\n`);
-    let results = classification.classifyText(classification.makeVec(text.text));
-    let breakdown = classification.textBreakDown(text.text);
+    console.log(`PARSING THE RESULTS OF [${text}]!\n`);
+    let results = classification.classifyText(classification.makeVec(text));
+    let breakdown = classification.textBreakDown(text);
     const stats = {
 	results: results,
 	breakdown: breakdown,

@@ -29,6 +29,10 @@ app.get("/experiment", async(req, res) => {
     res.sendFile(path.resolve(__dirname + "/views/experiment.html"))
 });
 
+app.get("/react", async(req, res) => {
+    res.sendFile(path.resolve(__dirname + "/views/reactTry.html"))
+});
+
 
 //Return the homepage upon initialization
 app.get("/", async(req, res) => {
@@ -126,7 +130,10 @@ app.post("/api/parsereason", async(req, res) => {
         };
 
         var ret = await dbInteraction.queries.updateUserWithChoice(newData);
-        res.json("PARSED REASON");
+	
+	res.json(nlp.pipelines.classificationPipeline(
+	    path.resolve(__dirname + "/assets/datasets/"), "itpthesis-pf.tsv", newData.choiceReason));
+        //res.json("PARSED REASON");
 
     } catch (error) {
         console.log(error);
