@@ -54,12 +54,12 @@ class AltUsesTask extends React.Component {
     render(){
 	const element = (
 
-	        <div id="listInputArea" className="debug">
-		<h3 id="listInstructions" className="debug">List all the different ways you could use a:<span className="object">cup</span></h3>
-		<Timer id="timer" className="timer" duration="500" timeoutFunc={this.timeOut.bind(this)} />
-		<textarea id="listInput" placeholder="Type each use on a new line"></textarea>
-		<button id="submitListButton" onClick={this.submit.bind(this)}><span>submit</span></button>
-		</div>
+	    <div id="listInputArea" className="debug">
+	      <h3 id="listInstructions" className="debug">List all the different ways you could use a:<span className="object">cup</span></h3>
+	      <Timer id="timer" className="timer" duration="500" timeoutFunc={this.timeOut.bind(this)} />
+	      <textarea id="listInput" placeholder="Type each use on a new line"></textarea>
+	      <button id="submitListButton" onClick={this.submit.bind(this)}><span>submit</span></button>
+	    </div>
 	);
 
 	return element;

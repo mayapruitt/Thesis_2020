@@ -78,15 +78,15 @@ class ListComparison extends React.Component {
     reasonEntryFormat(){
 	console.log("AAA");
 	return (
-		<div id="listChoiceReasonArea">
-		<p id="choiceInstructionMess" className="instructions">Think deeply now, and in two minutes, write as much as you can – Why did you choose that list? (The more detail you provide here, the better your analysis will be!)</p>
-		<Timer id="timer" className="timer" duration="120" timeoutFunc={this.timeOut.bind(this)} />
+	    <div id="listChoiceReasonArea">
+	      <p id="choiceInstructionMess" className="instructions">Think deeply now, and in two minutes, write as much as you can – Why did you choose that list? (The more detail you provide here, the better your analysis will be!)</p>
+	      <Timer id="timer" className="timer" duration="120" timeoutFunc={this.timeOut.bind(this)} />
 		
-		<textArea id="choiceTextArea" className="userInput"></textArea>
-		<div id="submitButtonContainer">
+	      <textArea id="choiceTextArea" className="userInput"></textArea>
+	      <div id="submitButtonContainer">
 		<button id="choiceSubmitButton" className="submitButton" onClick={this.submit.bind(this)}><span>submit</span></button>
-		</div>
-		</div>
+	      </div>
+	    </div>
 	)
     }
 
@@ -113,27 +113,27 @@ class ListComparison extends React.Component {
 	const element = (
 
 	    <div>
-		<div id="selectionArea" className="debug">
+	      <div id="selectionArea" className="debug">
 		<h3 id="evalInstructions" className="debug">Between these two lists, which is the most creative?</h3>
 		<div id="listsContainer">
 
-		<div id="yourListArea" className="debug">
-		<p className="userListSpace">Your List</p>
+		  <div id="yourListArea" className="debug">
+		    <p className="userListSpace">Your List</p>
 
-	    {this.parseList(JSON.parse(this.state.lists.userObj).list)}
-            </div>
+		    {this.parseList(JSON.parse(this.state.lists.userObj).list)}
+		  </div>
 
-	    {this.renderButton("simListButton",
-				   this.parseList(JSON.parse(this.state.lists.sim)[0].list),
-				   1)}
+		  {this.renderButton("simListButton",
+				     this.parseList(JSON.parse(this.state.lists.sim)[0].list),
+		  1)}
 	    
-	    {this.renderButton("diffListButton",
-				   this.parseList(JSON.parse(this.state.lists.diff)[0].list),
-				   2)}
+		  {this.renderButton("diffListButton",
+				     this.parseList(JSON.parse(this.state.lists.diff)[0].list),
+		  2)}
 
-            </div>
 		</div>
-		{enterReason}
+	      </div>
+	      {enterReason}
 	    </div>
 
 	);
