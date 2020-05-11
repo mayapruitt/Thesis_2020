@@ -90,7 +90,6 @@ function txtBreakDown(text){
 	//See if the phrase is contained in the text
 	if(str.match(`(\\W|^)${phrase.phrase}(\\W|$)`)){
 	    let found = [];
-	    console.log('surely!');
 	    //Find all offets of the matchin in the text
 	    text.replace(new RegExp(phrase.phrase, 'g'), (match, index) => {
 		found.push(index);
