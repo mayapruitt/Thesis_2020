@@ -37,6 +37,29 @@ app.get("/experiment", async(req, res) => {
     res.sendFile(path.resolve(__dirname + "/views/experiment.html"))
 });
 
+app.get("/create", async(req, res) => {
+    //Uncomment if the database needs to be reinitialized
+    //dbInteraction.queries.deleteAllDictionaryWords();
+    //dbInteraction.queries.deleteAllUsers();
+    //nlp.pipelines.simulateUsers(nlp.listData.lists);
+    res.sendFile(path.resolve(__dirname + "/views/create.html"))
+});
+
+app.get("/evaluate", async(req, res) => {
+    //Uncomment if the database needs to be reinitialized
+    //dbInteraction.queries.deleteAllDictionaryWords();
+    //dbInteraction.queries.deleteAllUsers();
+    //nlp.pipelines.simulateUsers(nlp.listData.lists);
+    res.sendFile(path.resolve(__dirname + "/views/evaluate.html"))
+});
+
+app.get("/analysis", async(req, res) => {
+    //Uncomment if the database needs to be reinitialized
+    //dbInteraction.queries.deleteAllDictionaryWords();
+    //dbInteraction.queries.deleteAllUsers();
+    //nlp.pipelines.simulateUsers(nlp.listData.lists);
+    res.sendFile(path.resolve(__dirname + "/views/analysis.html"))
+});
 
 //Return the homepage upon initialization
 app.get("/", async(req, res) => {
