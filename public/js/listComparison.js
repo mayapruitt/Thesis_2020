@@ -80,11 +80,11 @@ class ListComparison extends React.Component {
 	return (
 		<div id="listChoiceReasonArea">
 		<p id="choiceInstructionMess" className="instructions">Think deeply now, and in two minutes, write as much as you can – Why did you choose that list? (The more detail you provide here, the better your analysis will be!)</p>
-		<Timer id="timer" duration="120" timeoutFunc={this.timeOut.bind(this)} />
+		<Timer id="timer" className="timer" duration="120" timeoutFunc={this.timeOut.bind(this)} />
 		
-		<textArea id="choiceTextArea"></textArea>
+		<textArea id="choiceTextArea" className="userInput"></textArea>
 		<div id="submitButtonContainer">
-		<button id="choiceSubmitButton" className="button" onClick={this.submit.bind(this)}><span>submit</span></button>
+		<button id="choiceSubmitButton" className="submitButton" onClick={this.submit.bind(this)}><span>submit</span></button>
 		</div>
 		</div>
 	)
@@ -93,15 +93,15 @@ class ListComparison extends React.Component {
     //Renders the dynamic buttons
     renderButton(id_, text, state){
 	if(!this.state.chosen){
-	    return <button id={id_} className="button" onClick={()=>this.choseList(state)}><span>{text}</span></button>
+	    return <button id={id_} className="listButton" onClick={()=>this.choseList(state)}><span>{text}</span></button>
 	}
 
 	console.log(state + " " + this.state.chosen);
 	if(this.state.chosen == state){
-	    return <p style={{color:"green"}}>SELECTED</p>
+	    	return <button id={id_} className="listButtonChosen" ><span>{text}</span></button>
 	}
 
-	return <p></p>
+	return <button id={id_} className="listButtonOther" ><span>{text}</span></button>
     }
     
     render() {
@@ -111,38 +111,31 @@ class ListComparison extends React.Component {
 	    enterReason = this.reasonEntryFormat();
 	}
 	const element = (
-	      <div>
-	      <div id="listComparisonArea" className="debug">
 
-	      <div id="evalInstruction" className="debug instructions">
-	      Which of the following lists do you find more creative?
-	      </div>
+	    <div>
+		<div id="selectionArea" className="debug">
+		<h3 id="evalInstructions" className="debug">Between these two lists, which is the most creative?</h3>
+		<div id="listsContainer">
 
-	    <div id="lists-container" className="debug">
-		
-	    <div id="yourListArea" className="debug">
-		{this.parseList(JSON.parse(this.state.lists.userObj).list)}
-		<p id="yourListTitle">Your List</p>
-	    </div>
-		
-	    <div id="simListArea" className="debug">
-		{this.parseList(JSON.parse(this.state.lists.sim)[0].list)}
-	    {this.renderButton("simButt", "A", 1)}
-	    </div>
-		
-	    <div id="diffListArea" className="debug">
-		{this.parseList(JSON.parse(this.state.lists.diff)[0].list)}
-	    {this.renderButton("simButt", "B", 2)}
+		<div id="yourListArea" className="debug">
+		<p className="userListSpace">Your List</p>
 
-	    </div>
+	    {this.parseList(JSON.parse(this.state.lists.userObj).list)}
+            </div>
+
+	    {this.renderButton("simListButton",
+				   this.parseList(JSON.parse(this.state.lists.sim)[0].list),
+				   1)}
 	    
+	    {this.renderButton("diffListButton",
+				   this.parseList(JSON.parse(this.state.lists.diff)[0].list),
+				   2)}
+
+            </div>
+		</div>
+		{enterReason}
 	    </div>
-	    </div>
-	    
-	{enterReason}
-	
-	</div>
-		
+
 	);
 	return element;
 

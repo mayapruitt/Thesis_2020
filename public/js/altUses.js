@@ -23,14 +23,14 @@ class AltUsesTask extends React.Component {
 	console.log("moving on!");
 	
 	var userInput = document.getElementById("listInput");
-	document.getElementById("userListInput").removeChild(document.getElementById("listInputArea"));
-	console.log(document.querySelector("#userListInput"));
-	document.querySelector("#userListInput").removeChild(document.querySelector("#timer"));;
+	document.getElementById("listInputArea").removeChild(document.getElementById("submitListButton"));
+	document.getElementById("listInputArea").removeChild(document.querySelector("#timer"));;
 	
 	const newData = {
 	    list: userInput.value.split("\n")
         };
-	    
+
+	userInput.remove();
         var options = {
 	    method: 'POST',
 	    //tells the server how the data is being sent over
@@ -42,9 +42,7 @@ class AltUsesTask extends React.Component {
         listSubmitNotify.id = "listSubmitNotify";
         listSubmitNotify.className = "statusMessage";
         listSubmitNotify.innerHTML = "List sent!";
-        //have list sent first then next question appear with no message about it
-
-        userListInput.appendChild(listSubmitNotify);
+	document.getElementById("listInputArea").appendChild(listSubmitNotify);
 	
         let res = await fetch("/api/parselist", options);
         let response = await res.json();
@@ -55,23 +53,12 @@ class AltUsesTask extends React.Component {
 
     render(){
 	const element = (
-	        <div className="debug" id="userListInput">
-		<h3 className="debug" id="mainInstructions">In two minutes, list all the different ways you could use a:</h3>
-		<h3 id="listCreationObject" className="object debug">cup</h3>
-		
-		<div id="listInputInstructions" className="instructionsContainer debug">
-		<h3 id="listInputInstructions" className="debug">Type each use on a new line.</h3>
-		</div>
-		
-		<Timer id="timer" duration="10" timeoutFunc={this.timeOut.bind(this)} />
 
-		<div id="listInputArea">
-		<textarea id="listInput"></textarea>		
-		<div id="newPartButton" className="submitButton">
-                <button className="button" id="makeNewPart" onClick={this.submit.bind(this)}><span>submit</span></button>
-		</div>		
-		</div>
-		
+	        <div id="listInputArea" className="debug">
+		<h3 id="listInstructions" className="debug">List all the different ways you could use a:<span className="object">cup</span></h3>
+		<Timer id="timer" className="timer" duration="500" timeoutFunc={this.timeOut.bind(this)} />
+		<textarea id="listInput" placeholder="Type each use on a new line"></textarea>
+		<button id="submitListButton" onClick={this.submit.bind(this)}><span>submit</span></button>
 		</div>
 	);
 

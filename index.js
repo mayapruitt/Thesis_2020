@@ -23,7 +23,9 @@ app.get("/tutorial", async(req, res) => {
     res.sendFile(path.resolve(__dirname + "/views/tutorial.html"))
 });
 
-
+app.get("/create", async(req, res) => {
+    res.sendFile(path.resolve(__dirname + "/views/create.html"))
+});
 
 app.get("/experiment", async(req, res) => {
     res.sendFile(path.resolve(__dirname + "/views/experiment.html"))
