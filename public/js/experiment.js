@@ -36,9 +36,7 @@ async function makeNewParticipant(event) {
         }
         userInput.value = "";
         //Ensure user cannot resubmit list
-        divArea.removeChild(document.querySelector("#mainInstructions"));
-        divArea.removeChild(document.querySelector("#listInputArea"));
-        divArea.removeChild(document.querySelector("#listInputInstructions"));
+        document.querySelector("#createPage").removeChild(divArea);
 
         //Provide message that list has been sent
         var listSubmitNotify = document.createElement("P");
@@ -88,7 +86,7 @@ function listComparison(resp) {
     var diffListArea = document.querySelector("#diffListArea");
 
     //Set up the user's list
-    var yourList = document.createElement("P");
+    var yourList = document.createElement("BUTTON");
     yourList.classList = "list debug";
 
     var yourListTitle = document.createElement("P");
@@ -156,6 +154,7 @@ function choseSim() {
 
     //Indicate selection status
     var selected = document.createElement("P");
+    selected.id = "selected";
     selected.innerHTML = "SELECTED";
     selected.style.color = "green";
     listArea.appendChild(selected);
@@ -171,8 +170,8 @@ function choseDiff() {
 
     //Indicate selection status
     var selected = document.createElement("P");
+    selected.id = "selected";
     selected.innerHTML = "SELECTED";
-    selected.style.color = "green";
     listArea.appendChild(selected);
     reasonDisplay(1);
 }
@@ -184,8 +183,12 @@ function reasonDisplay(type) {
     var instructionMess = document.createElement("P");
     instructionMess.id = "choiceInstructionMess";
     instructionMess.className = "instructions";
-    instructionMess.innerHTML = "Think deeply now, and in two minutes, write as much as you can – Why did you choose that list? (The more detail you provide here, the better your analysis will be!)";
+    instructionMess.innerHTML = "In two minutes, write as much as you can – <br>Why did you choose that list?";
+    var incentiveMess = document.createElement("P");
+    incentiveMess.id = "incentiveMess";
+    incentiveMess.innerHTML = "(The more detail you provide here, the better your analysis will be!)"
     divArea.appendChild(instructionMess);
+    divArea.appendChild(incentiveMess);
 
     var textBox = document.createElement("TEXTAREA");
     textBox.id = "choiceTextArea";

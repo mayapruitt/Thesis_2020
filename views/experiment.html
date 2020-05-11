@@ -11,39 +11,27 @@
 </head>
 
 <body id="createPage">
-
-    <h1 class="phaseHeader debug">experiment</h1>
+    <!-- <h1 id="header" class="debug">experiment</h1> -->
     <div class="debug" id="userListInput">
-        <h3 class="debug" id="mainInstructions">In two minutes, list all the different ways you could use a:</h3>
-        <h3 id="listCreationObject" class="object debug">cup</h3>
-        <div id="listInputInstructions" class="instructionsContainer debug">
-            <h3 id="listInputInstructions" class="debug">Type each use on a new line.</h3>
+        <div id="part1Div" class="part1 debug">
+            <div id="listInputInstructions" class="instructionsContainer debug">
+                <h3 class="debug" id="mainInstructions">In two minutes, list all the different ways you could use a:<span class="object">cup</span></h3>
+                <!-- <h3 id="listCreationObject" class="object debug">cup</h3> -->
+            </div>
+            <!-- <img id="mug" class="debug" src="/assets/mug.png"> -->
         </div>
         <div id="listInputArea">
-            <textarea id="listInput"></textarea>
-            <div id="newPartButton" class="submitButton">
+            <textarea id="listInput" placeholder="Type each use on a new line"></textarea>
+            <div id="newPartButton" class="submitButton debug">
                 <button class="button" id="makeNewPart" style="vertical-align:middle"><span>submit</span></button>
             </div>
         </div>
     </div>
 
 
-    <div id="listComparisonArea" class="debug">
-        <div id="evalInstruction" class="debug"></div>
-        <div id="lists-container" class="debug">
-            <div id="yourListArea" class="debug"></div>
-            <div id="simListArea" class="debug"></div>
-            <div id="diffListArea" class="debug"></div>
-        </div>
-
-
-    </div>
-
-    <div id="listChoiceReasonArea" class="debug">
-    </div>
 
     <script src="./js/experiment.js"></script>
-    <script type="module" src="./js/threejs/three.min.js"></script>
+    <!-- <script type="module" src="./js/threejs/three.min.js"></script>
     <script type="module" src="./js/threejs/GLTFLoader.js"></script>
     <script type="module" src="./js/threejs/OrbitControls.js"></script>
     <script>
@@ -96,7 +84,7 @@
             requestAnimationFrame(animate);
         }
         init();
-    </script>
+    </script> -->
 </body>
 
 </html>

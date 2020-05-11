@@ -28,50 +28,84 @@
     src: url(/styles/fonts/CourierPrime-Regular.ttf);
 }
 
+@font-face {
+    font-family: CenturyGothic;
+    src: url(/styles/fonts/GOTHIC.TTF);
+}
+
 body {
-    background-color: #E6DDDF;
+    background-color: #c6b9b9;
+    background-image: url(/assets/bkg2copy.png);
+    background-size: 100% auto;
+    /* background-repeat: no-repeat; */
+}
+
+#header {
+    font-family: AbrilFatface;
+    font-size: 4.5rem;
+    color: #363436;
+    text-align: left;
+    margin: 0;
+    padding-top: 5vh;
+    padding-left: 15vw;
+}
+
+.part1 {
+    display: flex;
+    flex-direction: column;
 }
 
 #mainInstructions {
-    font-family: OpenSans Regular;
+    font-family: CenturyGothic;
     font-size: 1.5rem;
-    font-weight: 300;
+    font-weight: 200;
     text-align: left;
     color: #363436;
     padding: 0;
     margin: 0;
 }
 
+#mug {
+    width: 25vw;
+}
+
 .object {
     font-family: AbrilFatFace;
-    font-size: 3em;
+    font-size: 2.5rem;
     color: #363436;
+    padding-top: 1rem;
 }
 
 #listInputInstructions {
     padding: 0;
     font-family: OpenSans Regular;
     font-weight: lighter;
-    text-align: left;
+    text-align: center;
     font-size: 1rem;
     color: #363436;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .instructions {
     padding: 0;
     font-family: OpenSans Regular;
     font-weight: lighter;
-    text-align: left;
+    text-align: center;
     font-size: 1.5rem;
     color: #363436;
 }
 
 #listInput {
-    height: 200px;
-    width: 600px;
+    height: 30vh;
+    width: 50vw;
     text-align: left;
     font-size: 1rem;
     font-family: 'Courier New', Courier, monospace;
+    background-color: transparent;
+    border-radius: 21px;
+    box-shadow: inset 14px 14px 29px #a1a1a1, inset -14px -14px 29px #fbfbfb;
 }
 
 #listInputArea {
@@ -98,12 +132,15 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    padding-left: 20vw;
+    padding-right: 20vw;
 }
 
 #yourListArea {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-radius: 21px;
 }
 
 #yourListTitle {
@@ -128,19 +165,43 @@ body {
     justify-content: space-between;
 }
 
+#selected {
+    font-family: OpenSans Regular;
+    color: green;
+}
+
+#incentiveMess {
+    font-family: OpenSans Regular;
+    font-size: .95rem;
+    text-align: center;
+    color: #363436;
+    margin: 0;
+    padding-left: 0;
+    padding-bottom: 1rem;
+}
+
 #finalMessage {
     color: green;
 }
 
 .button {
+    margin-top: 1rem;
+    /* margin-left: 50vw; */
     display: inline-block;
-    border: 2px solid #363436;
-    background-color: transparent;
+    /* border: 2px solid #363436; */
+    /* background-color: transparent; */
+    padding-top: .1rem;
+    padding-bottom: .1rem;
+    padding-left: .5rem;
+    padding-right: 1rem;
     color: #363436;
     text-align: center;
-    font-family: OpenSans Regular;
+    font-family: CenturyGothic;
     transition: all 0.5s;
     cursor: pointer;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #dcdcdc, #b9b9b9);
+    box-shadow: 7px 7px 14px #ababab, -7px -7px 14px #f1f1f1;
 }
 
 .button span {
@@ -158,10 +219,14 @@ body {
     top: 10px;
     right: 20px;
     transition: 0.5s;
+    color: white;
+    text-shadow: 0 0 15px white;
 }
 
 .button:hover span {
-    padding-right: 20px;
+    /* padding-right: 20px; */
+    color: white;
+    text-shadow: 0 0 15px white;
 }
 
 .button:hover span:after {
