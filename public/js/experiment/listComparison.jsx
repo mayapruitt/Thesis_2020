@@ -93,10 +93,10 @@ class ListComparison extends React.Component {
 	console.log("AAA");
 	return (
 	    <div id="listChoiceReasonArea">
-	      <p id="choiceInstructionMess" className="instructions">Think deeply now, and in two minutes, write as much as you can – Why did you choose that list? (The more detail you provide here, the better your analysis will be!)</p>
+	      <p id="choiceInstructionMess" className="instructions">Now in 2 minutes, write as much as you can – Why did you choose that list?</p>
 	      <Timer id="timer" className="timer" duration="120" timeoutFunc={this.timeOut.bind(this)} />
 		
-	      <textArea id="choiceTextArea" className="userInput"></textArea>
+	      <textArea id="choiceTextArea" className="userInput" placeholder="The more detail you provide here, the better your analysis will be!"></textArea>
 	      <div id="submitButtonContainer">
 		<button id="choiceSubmitButton" className="submitButton" onClick={this.submit.bind(this)}><span>submit</span></button>
 	      </div>

@@ -68,10 +68,9 @@ class AltUsesTask extends React.Component {
 	    <div>
 	      <link rel="stylesheet" href="./styles/experiment.css" />
 
-	      <div id="listInputArea" className="debug">
-	      <link rel="stylesheet" href="./styles/experiment.css" />
-	      <h3 id="listInstructions" className="debug">List all the different ways you could use a:<span className="object">cup</span></h3>
-	      <Timer id="timer" className="timer" duration="500" timeoutFunc={this.timeOut.bind(this)} />
+	    <div id="listInputArea" className="debug">
+	      <h3 id="listInstructions" className="debug">In 2 minutes, list all the different ways you could use a:<span className="object">cup</span></h3>
+	      <Timer id="timer" className="timer" duration="120" timeoutFunc={this.timeOut.bind(this)} />
 	      <textarea id="listInput" placeholder="Type each use on a new line"></textarea>
 	      <button id="submitListButton" onClick={this.submit.bind(this)}><span>submit</span></button>
 	      </div>
