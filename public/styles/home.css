@@ -67,21 +67,27 @@
 }
 
 .button {
-    display: inline-block;
-    border: 2px solid #363436;
-    background-color: transparent;
-    color: #363436;
+
+    margin-top: 55%;
+    border-radius: 7px;
+    background: linear-gradient(145deg, #dcdcdc, #b9b9b9);
+    box-shadow: 7px 7px 14px #ababab, -7px -7px 14px #f1f1f1;
+    font-family: CenturyGothic;
     text-align: center;
-    font-family: OpenSans Regular;
+    color: #363436;
     transition: all 0.5s;
     cursor: pointer;
+    
+
 }
 
 .button span {
     cursor: pointer;
-    display: inline-block;
+    text-align: center;
+    /* display: inline-block; */
     position: relative;
     transition: 0.5s;
+    
 }
 
 .button span:after {
@@ -92,13 +98,20 @@
     top: 10px;
     right: 20px;
     transition: 0.5s;
+    color: white;
+    text-shadow: 0 0 25px white;
 }
 
 .button:hover span {
-    padding-right: 20px;
+    /* padding-right: 20px; */
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 25px white;
+
 }
 
 .button:hover span:after {
+    text-align: center;
     opacity: 1;
     right: 0;
 }

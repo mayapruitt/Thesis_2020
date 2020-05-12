@@ -2,7 +2,7 @@ class HomePage extends React.Component {
     constructor(props){
 	super(props);
 	this.state = {
-	    videoEnded : 0
+	    videoEnded : 1
 	};
 
     }
@@ -32,10 +32,6 @@ class HomePage extends React.Component {
 	    <div>
 	      <link rel="stylesheet" href="/styles/home.css" />
 		<div className="all-content">
-		  <div className="headers">
-		    <h1 className="header debug">What is creativity?</h1>
-		    <h2 className="tagline debug">With this interactive experiment, you might find some answers.</h2>
-		  </div>
 		  <div className="button-container debug">
 		    <button className="button" id="tutorialBtn"
 			    style={{verticalAlign:"middle"}}

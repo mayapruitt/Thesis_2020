@@ -30,7 +30,7 @@ function tsvToJson(tsvFile, dataDir){
     let fileName = tsvFile.split("/");
     fileName = fileName[fileName.length - 1].split(".")[0];
     console.log(fileName);
-    fs.writeFileSync(`${dataDir}/${fileName}.json`, jsonObj);
+    //fs.writeFileSync(`${dataDir}/${fileName}.json`, jsonObj);
     jsonObj = JSON.parse(jsonObj);
     jsonObj.phrases.sort((a,b) => {
 	return b.phrase.length - a.phrase.length;

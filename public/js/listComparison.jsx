@@ -5,7 +5,7 @@ class ListComparison extends React.Component {
 	    lists : this.props.listObjects,
 	    chosen: 0,
 	    submitted : 0,
-	    videoEnded : 0
+	    videoEnded : 1
 	}
     }
 

@@ -19,30 +19,13 @@ app.use(express.static(path.resolve(`${__dirname}/public`)));
 //Set up the database connection
 dbInteraction.connect(config.MONGODB_URI);
 
-app.get("/tutorial", async(req, res) => {
-    res.sendFile(path.resolve(__dirname + "/views/tutorial.html"))
-});
-
-app.get("/create", async(req, res) => {
-    res.sendFile(path.resolve(__dirname + "/views/create.html"))
-});
-
-app.get("/experiment", async(req, res) => {
-    res.sendFile(path.resolve(__dirname + "/views/experiment.html"))
-});
-
-app.get("/react", async(req, res) => {
-    res.sendFile(path.resolve(__dirname + "/views/reactTry.html"))
-});
-
-
 //Return the homepage upon initialization
 app.get("/", async(req, res) => {
     //Uncomment if the database needs to be reinitialized
     //dbInteraction.queries.deleteAllDictionaryWords();
     //dbInteraction.queries.deleteAllUsers();
     //nlp.pipelines.simulateUsers(nlp.listData.lists);
-    res.sendFile(path.resolve(__dirname + "/views/home.html"))
+    res.sendFile(path.resolve(__dirname + "/views/experiment.html"))
 });
 
 //GET
@@ -70,29 +53,6 @@ app.get("/api/getallusers", async(req, res) => {
     }
 
 });
-
-app.get("/trials/classification", (req, res) => {
-
-    res.sendFile(path.resolve(__dirname + "/views/classification.html"));
-
-});
-
-app.post("/trials/classification", (req, res) => {
-
-    try {
-        const newData = {
-            text: req.body.text
-        }
-
-        res.json(nlp.pipelines.classificationPipeline(
-	    path.resolve(__dirname + "/assets/datasets/"), "itpthesis-pf.tsv", newData));
-
-    } catch (err) {
-        console.error(`There was an error! [${err}]`);
-        res.json(err);
-    }
-});
-
 
 
 //POST

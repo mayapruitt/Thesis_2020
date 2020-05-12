@@ -13,8 +13,9 @@ let dict;
 let map = {};
 
 let color = {
-    person: '#9CD6F9',
-    process: '#F49F0A',
+
+    process: '#9CD6F9', 
+    person:  '#F49F0A',
     product: '#00A6A6',
     press: '#EFCA08'
 };
@@ -97,7 +98,7 @@ function txtBreakDown(text) {
 
             //Replace all matches with the augmented text
             found.reverse().forEach((index) => {
-                text = text.substr(0, index) + `<div class="phrase"><span style="color:${color[phrase.class]}"><span class="phrase-info">${phrase.info[phrase.infoIt++]}</span>${str.substr(index, phrase.phrase.length)}</span></div>` + text.substr(index + phrase.phrase.length);
+                text = (text.substr(0, index) + `<div class="phrase"><span style="color:${color[phrase.class]}"><span class="phrase-info">${phrase.info[phrase.infoIt++]}</span>${phrase.phrase}</span></div>` + text.substr(index + phrase.phrase.length));
                 phrase.infoIt = phrase.infoIt >= phrase.info.length ? 0 : phrase.infoIt;
             });
         }
