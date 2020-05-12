@@ -33,15 +33,16 @@ class AnalysisDisplay extends React.Component {
 	//If there are nested phrases, mark them for deletion
 	Array.prototype.forEach.call(allPhrases, (element)=>{
 
+	    
 	    //is a root element
 	    if(element.parentNode.className != "phrase-info"){
-		var el = element.getElementsByClassName("phrase")[0];
-		//Set the nested element to the word instead
-		if(el){
+		var nestedElements = element.getElementsByClassName("phrase");
+		Array.prototype.forEach.call(nestedElements, (el) => {
 		    var str = el.attributes.content.nodeValue;
 		    //Word is encased to not be identified
-		    el.innerHTML = str.substr(2, str.length-4);
-		}
+		    el.innerHTML = str.substr(2, str.length-4).replace("**", " ");
+		});
+		//Set the nested element to the word instead
 	    }
 	});
 

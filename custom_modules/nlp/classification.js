@@ -102,7 +102,7 @@ function txtBreakDown(text) {
 		    ++phrase.infoIt;
 		    phrase.infoIt = phrase.infoIt >= phrase.info.length ? 0 : phrase.infoIt;
 		}
-                text = (text.substr(0, index) + `<div content="EE${phrase.phrase}EE" class="phrase"><span style="color:${color[phrase.class]}"><span class="phrase-info">${phrase.info[phrase.infoIt++]}</span>${phrase.phrase}</span></div>` + text.substr(index + phrase.phrase.length));
+                text = (text.substr(0, index) + `<div content="EE${phrase.phrase.replace(new RegExp(" ", "g"), "**")}EE" class="phrase"><span style="color:${color[phrase.class]}"><span class="phrase-info">${phrase.info[phrase.infoIt++]}</span>${phrase.phrase}</span></div>` + text.substr(index + phrase.phrase.length));
                 phrase.infoIt = phrase.infoIt >= phrase.info.length ? 0 : phrase.infoIt;
             });
         }
