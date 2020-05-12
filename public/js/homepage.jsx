@@ -2,7 +2,7 @@ class HomePage extends React.Component {
     constructor(props){
 	super(props);
 	this.state = {
-	    videoEnded : 1
+	    videoEnded : 0
 	};
 
     }

@@ -6,7 +6,7 @@ class AnalysisDisplay extends React.Component {
 	    breakdown : this.props.analysisResults.breakdown,
 	    percentsSet : 0,
 	    svgSize     : 500,
-	    videoEnded : 1
+	    videoEnded : 0
 	    
 	};
     }

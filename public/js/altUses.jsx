@@ -7,7 +7,7 @@ class AltUsesTask extends React.Component {
 	    val : 0,
 	    interval : 0,
 	    submitted: 0,
-	    videoEnded: 1
+	    videoEnded: 0
 	};
     }
 
