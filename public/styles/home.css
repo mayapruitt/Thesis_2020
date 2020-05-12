@@ -1,10 +1,11 @@
->* {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
     padding: 10px;
     font-size: 16px;
 }
@@ -67,18 +68,16 @@
 }
 
 .button {
-
-    margin-top: 55%;
+    margin-top: 55vh;
     border-radius: 7px;
-    background: linear-gradient(145deg, #dcdcdc, #b9b9b9);
-    box-shadow: 7px 7px 14px #ababab, -7px -7px 14px #f1f1f1;
+    background: linear-gradient(145deg, #e4e0dd, #c0bcba);
+    box-shadow: 7px 7px 14px #a6a3a1, -7px -7px 14px #fffffd;
     font-family: CenturyGothic;
     text-align: center;
     color: #363436;
     transition: all 0.5s;
     cursor: pointer;
-    
-
+    padding: 10px;
 }
 
 .button span {
@@ -87,7 +86,6 @@
     /* display: inline-block; */
     position: relative;
     transition: 0.5s;
-    
 }
 
 .button span:after {
@@ -107,7 +105,6 @@
     color: white;
     text-align: center;
     text-shadow: 0 0 25px white;
-
 }
 
 .button:hover span:after {
@@ -115,4 +112,3 @@
     opacity: 1;
     right: 0;
 }
-

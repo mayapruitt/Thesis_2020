@@ -73,7 +73,7 @@ class AnalysisDisplay extends React.Component {
 		  <div id="userTextArea" className="debug">
 		    <div id="offboard">
                       <p id="offboardText"><span>This is a breakdown of your subjectivity.</span>
-			Your response has been analyzed by a neural net and these are the results.
+			 Your response has been analyzed by a neural net and these are the results.
 			Each percentage is how closely your response matches current scientific perspectives on creativity. 
 			Roll over highlighted words to learn more from creativity research.</p>
 		    </div>
@@ -158,10 +158,9 @@ class AnalysisDisplay extends React.Component {
 		        </svg>
                       </div>
 		    </div>
-		    <p className="categoryDef"><b>Process</b>looks at cognitive processes involved in creativity, like thinking outside the box. 
-                      <b>Person</b>studies the characteristics of creative people. 
-                      <b>Product</b> is more concerned with creative outcomes themselves. 
-                      <b>Press</b> deals with the relationship between people and their environment, such as the influence of culture.</p>
+		    <p className="categoryDef"><b>Process</b> looks at cognitive processes involved in creativity, like thinking outside the box. <b>Person</b> studies the characteristics of creative people. 
+                       <b>Product</b> is more concerned with creative outcomes themselves. 
+                       <b>Press</b> deals with the relationship between people and their environment, such as the influence of culture.</p>
 		  </div>
 
 		  {/* <div id="researchInfoContainer" className="debug">
