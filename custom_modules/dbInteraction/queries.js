@@ -135,6 +135,20 @@ function getAllUsers(){
 }
 exports.getAllUsers = getAllUsers;
 
+function getAllWords(){
+   return new Promise((resolve, reject) => {
+	models.dictionaryDatabase.find({}, (err, data) => {
+	    if(err){
+		reject(err);
+	    }
+	    resolve(data);
+	});
+
+    });
+}
+exports.getAllWords = getAllWords;
+
+
 //Get a user document from the user database from the id
 function getUserDocumentFromId(id){
     return new Promise((resolve, reject) => {
@@ -168,12 +182,12 @@ exports.getListFromId = getListFromId;
 //Delete all users in the users collection
 function deleteAllUsers(){
     return new Promise((resolve, reject) => {
-	models.userDatabase.deleteMany({}, (err, lad) => {
+	models.userDatabase.deleteMany({}, (err, data) => {
 	if(err){
 	    reject(err);
 	}
 	    console.log("Deleted user data from database!");
-	    resolve(lad);
+	    resolve(data);
 	});
     });
 
@@ -194,3 +208,40 @@ function deleteAllDictionaryWords(){
 
 }
 exports.deleteAllDictionaryWords = deleteAllDictionaryWords;
+
+function delUserWithId(id){
+    return new Promise((resolve, reject) => {
+	models.userDatabase.deleteOne({"_id" : id}, (err, data) => {
+	    if(err){
+		reject(err);
+	    }
+	    console.log(data);
+	    resolve(data);
+	});
+    });
+}
+exports.deleteUserWithId = delUserWithId;
+
+function delTestData(){
+   return new Promise((resolve, reject) => {
+       models.userDatabase.find({}, (err, data) => {
+	   if(err){
+	       reject(err);
+	   }
+	   data.forEach((datum) => {
+	       if(!datum.list){
+		   return;
+	       }
+	       datum.list.forEach((li)=>{
+		   if(li == "test" ||
+		      li == "a" ||
+		      li == "a " ){
+		       delUserWithId(datum._id);
+		   }
+	       });
+	   });
+	   resolve(data);
+       });
+   });
+}
+exports.deleteTestData = delTestData;

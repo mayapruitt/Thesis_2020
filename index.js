@@ -24,6 +24,7 @@ app.get("/", async(req, res) => {
     //Uncomment if the database needs to be reinitialized
     //dbInteraction.queries.deleteAllDictionaryWords();
     //dbInteraction.queries.deleteAllUsers();
+    //dbInteraction.queries.deleteTestData();
     //nlp.pipelines.simulateUsers(nlp.listData.lists);
     res.sendFile(path.resolve(__dirname + "/views/experiment.html"))
 });
@@ -46,6 +47,19 @@ app.get("/api/getallusers", async(req, res) => {
 
     try {
         const data = await dbInteraction.queries.getAllUsers();
+        res.json(data);
+    } catch (err) {
+        console.error(err);
+        res.json(err);
+    }
+
+});
+
+//GET
+app.get("/api/getallwords", async(req, res) => {
+
+    try {
+        const data = await dbInteraction.queries.getAllWords();
         res.json(data);
     } catch (err) {
         console.error(err);
