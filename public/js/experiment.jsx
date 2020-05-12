@@ -32,7 +32,6 @@ class ExperimentManager extends React.Component {
 		this.setState({intro : 2});
 		break;
 	    case 1: //start experiment
-		console.log("SURE!");
 		this.setState({intro : 0});
 		break;
 	    default:

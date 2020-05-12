@@ -98,7 +98,11 @@ function txtBreakDown(text) {
 
             //Replace all matches with the augmented text
             found.reverse().forEach((index) => {
-                text = (text.substr(0, index) + `<div class="phrase"><span style="color:${color[phrase.class]}"><span class="phrase-info">${phrase.info[phrase.infoIt++]}</span>${phrase.phrase}</span></div>` + text.substr(index + phrase.phrase.length));
+		if(phrase.info[phrase.infoIt].length < 1){
+		    ++phrase.infoIt;
+		    phrase.infoIt = phrase.infoIt >= phrase.info.length ? 0 : phrase.infoIt;
+		}
+                text = (text.substr(0, index) + `<div content="EE${phrase.phrase}EE" class="phrase"><span style="color:${color[phrase.class]}"><span class="phrase-info">${phrase.info[phrase.infoIt++]}</span>${phrase.phrase}</span></div>` + text.substr(index + phrase.phrase.length));
                 phrase.infoIt = phrase.infoIt >= phrase.info.length ? 0 : phrase.infoIt;
             });
         }

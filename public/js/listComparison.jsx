@@ -10,7 +10,6 @@ class ListComparison extends React.Component {
     }
 
     choseList(listNum){
-	console.log(listNum);
 	this.setState({chosen : listNum});
     }
 
@@ -41,10 +40,9 @@ class ListComparison extends React.Component {
 	
 	this.setState({submitted : 1});
 	var reasonArea = document.getElementById("listChoiceReasonArea");
-	console.log(reasonArea);
 
 	reasonArea.removeChild(document.querySelector("#submitButtonContainer"));
-	console.log(document.getElementById("choiceTextArea").value);
+
 	var reason = document.getElementById("choiceTextArea").value;
 	reasonArea.removeChild(document.querySelector("#choiceTextArea"));
 	reasonArea.removeChild(document.querySelector("#timer"));
@@ -75,7 +73,6 @@ class ListComparison extends React.Component {
 	var response = await fetch("/api/parsereason", options);
 	response = await response.json();
 
-	console.log(response);
 	this.props.nextState(response);
     }
 
@@ -90,7 +87,6 @@ class ListComparison extends React.Component {
 
     //Renders the second part of the page
     reasonEntryFormat(){
-	console.log("AAA");
 	return (
 	    <div id="listChoiceReasonArea">
 	      <p id="choiceInstructionMess" className="instructions">Now in 2 minutes, write as much as you can – Why did you choose that list?</p>
@@ -110,7 +106,6 @@ class ListComparison extends React.Component {
 	    return <button id={id_} className="listButton" onClick={()=>this.choseList(state)}><span>{text}</span></button>
 	}
 
-	console.log(state + " " + this.state.chosen);
 	if(this.state.chosen == state){
 	    	return <button id={id_} className="listButtonChosen" ><span>{text}</span></button>
 	}

@@ -16,7 +16,6 @@ class AnalysisDisplay extends React.Component {
 	percents.forEach((element, index) => {
             el = document.getElementById(`circle${index + 1}`);
             radius = el.r.baseVal.value;
-            console.log(radius);
             circum = (radius * (2 * Math.PI));
             let x = (2 * Math.PI) * (element / 100);
             document.getElementById(`circle${index + 1}`).style.strokeDasharray = `${circum}`;
@@ -26,10 +25,32 @@ class AnalysisDisplay extends React.Component {
     });
     }
 
+    
+    removeNestedPhrases(){
+	//Get all phrase elements
+	var allPhrases = document.getElementById("phraseDiv").getElementsByClassName("phrase");
+
+	//If there are nested phrases, mark them for deletion
+	Array.prototype.forEach.call(allPhrases, (element)=>{
+
+	    //is a root element
+	    if(element.parentNode.className != "phrase-info"){
+		var el = element.getElementsByClassName("phrase")[0];
+		//Set the nested element to the word instead
+		if(el){
+		    var str = el.attributes.content.nodeValue;
+		    //Word is encased to not be identified
+		    el.innerHTML = str.substr(2, str.length-4);
+		}
+	    }
+	});
+
+    }
 
     videoEnded(){
 
 	this.setState({videoEnded: 1});
+	this.removeNestedPhrases();
 	this.setCirclePercentages([(this.state.nnResults.process * 100).toFixed(2), (this.state.nnResults.person * 100).toFixed(2), (this.state.nnResults.product * 100).toFixed(2), (this.state.nnResults.press * 100).toFixed(2)]);
 	this.setState({percentsSet : 1});
 
@@ -56,7 +77,7 @@ class AnalysisDisplay extends React.Component {
 			Each percentage is how closely your response matches current scientific perspectives on creativity. 
 			Roll over highlighted words to learn more from creativity research.</p>
 		    </div>
-		    <div dangerouslySetInnerHTML={{__html: this.state.breakdown }}></div>
+		    <div id="phraseDiv" dangerouslySetInnerHTML={{__html: this.state.breakdown }}></div>
 		    <div id="categoriesArea" className="debug">
                       <div id="categoryNameArea" className="debug">
 			<div className="categoryName debug">
