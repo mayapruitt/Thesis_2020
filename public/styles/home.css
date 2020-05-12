@@ -1,4 +1,4 @@
-* {
+>* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -41,7 +41,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url(/assets/BKG.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
 }
@@ -103,3 +102,4 @@
     opacity: 1;
     right: 0;
 }
+

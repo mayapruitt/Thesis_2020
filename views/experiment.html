@@ -4,23 +4,29 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>180</title>
-    <meta name="description" content="">
+
+    <meta name="description" content="180: An interactive creativity experiment">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Notable&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
     <link rel="stylesheet" href="./styles/experiment.css">
+    
 </head>
 
-<body id="createPage">
+<body id="experimentPage" background-repeat="no-repeat">
+  <video autoplay muted z-index="-1" id="video"></video>
+  <div id="experimentContent"></div>
 
-    <div id="experimentContent"></div>
-
-    <script type="text/jsx" src="./js/experiment/altUses.jsx"></script>
-    <script type="text/jsx" src="./js/experiment/listComparison.jsx"></script>
-    <script type="text/jsx" src="./js/experiment/analysisDisplay.jsx"></script>
-    <script type="text/jsx" src="./js/experiment/experiment.jsx"></script>
+  
+  <script type="text/jsx" src="./js/experiment/homepage.jsx"></script>
+  <script type="text/jsx" src="./js/experiment/tutorial.jsx"></script>
+  <script type="text/jsx" src="./js/experiment/timer.jsx"></script>
+  <script type="text/jsx" src="./js/experiment/altUses.jsx"></script>
+  <script type="text/jsx" src="./js/experiment/listComparison.jsx"></script>
+  <script type="text/jsx" src="./js/experiment/analysisDisplay.jsx"></script>
+  <script type="text/jsx" src="./js/experiment/experiment.jsx"></script>
 
 </body>
 

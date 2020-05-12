@@ -4,7 +4,8 @@ class ListComparison extends React.Component {
 	this.state = {
 	    lists : this.props.listObjects,
 	    chosen: 0,
-	    submitted : 0
+	    submitted : 0,
+	    videoEnded : 0
 	}
     }
 
@@ -19,6 +20,20 @@ class ListComparison extends React.Component {
 	if(!this.state.submitted){
 	    this.submit("finished");
 	}
+    }
+
+
+    videoEnded(){
+	this.setState({videoEnded: 1});
+
+    }
+
+    componentDidMount(){
+	ReactDOM.render(<source src="/assets/listComparison/part2.mp4" type="video/mp4" />,
+	    document.getElementById('video')
+		       );
+	document.getElementById('video').load();
+	document.getElementById('video').onended = this.videoEnded.bind(this);
     }
 
 
@@ -48,7 +63,6 @@ class ListComparison extends React.Component {
 	    body: JSON.stringify(sendData)
 	};
 	
-	console.log(reason);
 	var reasonSubmitNotify = document.createElement("P");
         reasonSubmitNotify.id = "reasonSubmitNotify";
         reasonSubmitNotify.className = "statusMessage";
@@ -103,6 +117,8 @@ class ListComparison extends React.Component {
 
 	return <button id={id_} className="listButtonOther" ><span>{text}</span></button>
     }
+
+    
     
     render() {
 	let enterReason;
@@ -111,8 +127,9 @@ class ListComparison extends React.Component {
 	    enterReason = this.reasonEntryFormat();
 	}
 	const element = (
-
+	    this.state.videoEnded ? 
 	    <div>
+	      <link rel="stylesheet" href="./styles/experiment.css" />
 	      <div id="selectionArea" className="debug">
 		<h3 id="evalInstructions" className="debug">Between these two lists, which is the most creative?</h3>
 		<div id="listsContainer">
@@ -135,6 +152,8 @@ class ListComparison extends React.Component {
 	      </div>
 	      {enterReason}
 	    </div>
+
+	    : <div></div>
 
 	);
 	return element;

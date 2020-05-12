@@ -1,13 +1,13 @@
 class AltUsesTask extends React.Component {
 
     constructor(props){
-	console.log(props);
 	super(props);
 	var str = new Date().toLocaleTimeString();
 	this.state = {
 	    val : 0,
 	    interval : 0,
-	    submitted: 0
+	    submitted: 0,
+	    videoEnded: 0
 	};
     }
 
@@ -20,7 +20,6 @@ class AltUsesTask extends React.Component {
     async submit(){
 
 	this.setState({submitted: 1});
-	console.log("moving on!");
 	
 	var userInput = document.getElementById("listInput");
 	document.getElementById("listInputArea").removeChild(document.getElementById("submitListButton"));
@@ -50,18 +49,38 @@ class AltUsesTask extends React.Component {
 
     }
 
+    videoEnded(){
+	this.setState({videoEnded: 1});
+    }
+
+    componentDidMount(){
+	ReactDOM.render(<source src="/assets/straightThrough/straightthru.mp4" type="video/mp4" />,
+	    document.getElementById('video')
+		       );
+	document.getElementById('video').load();
+	document.getElementById('video').onended = this.videoEnded.bind(this);
+
+    }
 
     render(){
-	const element = (
+	return (
+	    this.state.videoEnded ? 
+	    <div>
+	      <link rel="stylesheet" href="./styles/experiment.css" />
 
-	    <div id="listInputArea" className="debug">
+	      <div id="listInputArea" className="debug">
+	      <link rel="stylesheet" href="./styles/experiment.css" />
 	      <h3 id="listInstructions" className="debug">List all the different ways you could use a:<span className="object">cup</span></h3>
 	      <Timer id="timer" className="timer" duration="500" timeoutFunc={this.timeOut.bind(this)} />
 	      <textarea id="listInput" placeholder="Type each use on a new line"></textarea>
 	      <button id="submitListButton" onClick={this.submit.bind(this)}><span>submit</span></button>
-	    </div>
+	      </div>
+		</div>
+
+	    : <div></div>
+
 	);
 
-	return element;
+
     }
 }

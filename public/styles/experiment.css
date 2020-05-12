@@ -9,6 +9,21 @@
     font-size: 16px;
 }
 
+#experimentPage {
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+}
+
+#video {
+    z-index: -1;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
 .debug {
     border: 1px solid red;
 }
@@ -28,10 +43,6 @@
     src: url(/styles/fonts/GOTHIC.TTF);
 }
 
-body {
-    background-image: url(/assets/bkg2copy.png);
-    background-size: 100% auto;
-}
 
 #listInputArea {
     display: flex;

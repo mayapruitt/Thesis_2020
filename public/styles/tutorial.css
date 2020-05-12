@@ -41,7 +41,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url(/assets/BKG.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
 }
@@ -141,4 +140,12 @@ li {
 .button:hover span:after {
     opacity: 1;
     right: 0;
+}
+
+#introVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-wdith: 100%;
+    min-height: 100%;
 }
