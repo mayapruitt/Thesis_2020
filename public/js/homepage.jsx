@@ -10,8 +10,6 @@ class HomePage extends React.Component {
     videoEnded(){
 	console.log("ended");
 	this.setState({videoEnded: 1});
-	console.log(document.getElementById('video'));
-
     }
 
     componentDidMount(){

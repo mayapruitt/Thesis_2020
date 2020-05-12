@@ -24,8 +24,8 @@ app.get("/", async(req, res) => {
     //Uncomment if the database needs to be reinitialized
     //dbInteraction.queries.deleteAllDictionaryWords();
     //dbInteraction.queries.deleteAllUsers();
-    //dbInteraction.queries.deleteTestData();
     //nlp.pipelines.simulateUsers(nlp.listData.lists);
+    //dbInteraction.queries.deleteTestData();
     res.sendFile(path.resolve(__dirname + "/views/experiment.html"))
 });
 

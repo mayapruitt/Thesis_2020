@@ -68,12 +68,12 @@ exports.userListPipeline = uPipeL;
 function classPipeline(dataDir, dataFile, text){
 
     if(!classification.initialized){
-	console.log(`Parsing ${dataFile}`);
+	//console.log(`Parsing ${dataFile}`);
 	classification.initializeNet(`${dataDir}/${dataFile}`, dataDir);
 	classification.initialized = 1;
     }
 
-    console.log(`PARSING THE RESULTS OF [${text}]!\n`);
+    //console.log(`PARSING THE RESULTS OF [${text}]!\n`);
     let results = classification.classifyText(classification.makeVec(text));
     let breakdown = classification.textBreakDown(text);
     const stats = {

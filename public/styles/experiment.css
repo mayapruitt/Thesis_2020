@@ -390,6 +390,21 @@
     color: #70BFEE;
 }
 
+#analysisBreakdown {
+
+    font-size: 2rem;
+
+}
+
+#phraseDiv{
+    padding-top: 2rem;
+    font-size: 2rem;
+}
+
+#theKeyword{
+    font-size: 2rem;
+}
+
 #person {
     font-family: AbrilFatface;
     font-size: 2rem;

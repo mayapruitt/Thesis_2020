@@ -14,10 +14,10 @@ let map = {};
 
 let color = {
 
-    process: '#9CD6F9', 
+    process: '#70BFEE', 
     person:  '#F49F0A',
     product: '#00A6A6',
-    press: '#EFCA08'
+    press: '#D9C300'
 };
 let jsonObj;
 
@@ -81,7 +81,7 @@ function txtBreakDown(text) {
     let str = text.slice(0, text.length);
     str = str.toLowerCase();
     text = str;
-    console.log(str);
+    //console.log(str);
     let phrases = jsonObj.phrases;
 
     //Cycle through all phrases
@@ -102,7 +102,7 @@ function txtBreakDown(text) {
 		    ++phrase.infoIt;
 		    phrase.infoIt = phrase.infoIt >= phrase.info.length ? 0 : phrase.infoIt;
 		}
-                text = (text.substr(0, index) + `<div content="EE${phrase.phrase.replace(new RegExp(" ", "g"), "**")}EE" class="phrase"><span style="color:${color[phrase.class]}"><span class="phrase-info">${phrase.info[phrase.infoIt++]}</span>${phrase.phrase}</span></div>` + text.substr(index + phrase.phrase.length));
+                text = (text.substr(0, index) + `<div content="EE${phrase.phrase.replace(new RegExp(" ", "g"), "**")}EE" class="phrase"><span style="color:${color[phrase.class]}"><span class="phrase-info">${phrase.info[phrase.infoIt++]}</span><p id="theKeyword">${phrase.phrase}</p></span></div>` + text.substr(index + phrase.phrase.length));
                 phrase.infoIt = phrase.infoIt >= phrase.info.length ? 0 : phrase.infoIt;
             });
         }

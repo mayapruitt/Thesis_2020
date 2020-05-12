@@ -78,7 +78,7 @@ class AnalysisDisplay extends React.Component {
 			Each percentage is how closely your response matches current scientific perspectives on creativity. 
 			Roll over highlighted words to learn more from creativity research.</p>
 		    </div>
-		    <div id="phraseDiv" dangerouslySetInnerHTML={{__html: this.state.breakdown }}></div>
+		      <div id="phraseDiv" dangerouslySetInnerHTML={{__html: this.state.breakdown }}></div>
 		    <div id="categoriesArea" className="debug">
                       <div id="categoryNameArea" className="debug">
 			<div className="categoryName debug">

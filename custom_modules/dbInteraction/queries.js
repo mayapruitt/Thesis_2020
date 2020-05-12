@@ -235,7 +235,9 @@ function delTestData(){
 	       datum.list.forEach((li)=>{
 		   if(li == "test" ||
 		      li == "a" ||
-		      li == "a " ){
+		      li == "hello" ||
+		      li == "a " ||
+		      (li == "" && datum.list.length == 1)){
 		       delUserWithId(datum._id);
 		   }
 	       });
