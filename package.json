@@ -20,7 +20,7 @@
         "mongoose": "^5.9.3",
         "morgan": "^1.9.1",
         "natural": "^0.6.3",
-        "node-fetch": "^2.6.0",
+        "node-fetch": "^2.6.7",
         "spelling-corrector": "^3.0.0",
         "stemmer": "^1.0.5",
         "stopword": "^1.0.0"
